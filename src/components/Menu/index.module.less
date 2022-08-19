@@ -1,16 +1,19 @@
 .menu-wrap{
   display: flex;
   font-size: 14px;
-  padding-top: 10px;
-  background-color: white;
+  padding-top: 20px;
   color: #555555;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 2;
+  height: 55px;
+  background: url(http://121.204.145.151:8087/icons/ban.png) 100% 55px;
+  background-size: 100% 64px;
+  background-position: 0 -8px;
   :global{
     .item {
       flex: 1;
-      height: 60px;
+      height: 50px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -18,30 +21,19 @@
       >img{
         margin: 0 auto;
         width: 25px;
-        height: 30px;
+        height: 25px;
       }
     }
     .public{
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background-color: #105CCE;
       color: white;
       line-height: 25px;
       font-size: 15px;
-      transform: translateY(-20px);
+      transform: translateY(-11px);
       text-align: center;
     }
   }
-}
-
-
-.bg{
-  position: absolute;
-  top: -20px;
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
-  left: calc( 50% - 42px );
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
 }

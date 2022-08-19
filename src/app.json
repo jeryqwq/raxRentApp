@@ -2,17 +2,21 @@
   "routes": [
     {
       "path": "/",
-      "source": "pages/Index/index",
-      "window": {
-        "title": "容腾达",
-        "titleBarColor": "#105DD0"
-      }
+      "source": "pages/Index/index"
+    
     },{
       "path": "/home",
       "source": "pages/Home/index"
+    },{
+      "path": "/login",
+      "source": "pages/Login/index"
     }
   ],
   "window": {
-    "title": "容腾达小程序"
+    "title": "融勝达工程机械网",
+    "titleBarColor": "#105DD0"
+  },
+  "nativeConfig": {
+    "appid": "wxd0f39c0fe7d35ddb"
   }
 }

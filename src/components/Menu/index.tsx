@@ -6,8 +6,6 @@ import { Icon } from '@alifd/meet';
 function Menu({ index } : {index: number}) {
   return (
     <div style={{position: 'relative', zIndex: 1}}>
-      <view className={styles.bg} style={{background: 'white'}}>
-      </view>
     <div className={ styles['menu-wrap']}>
       <div className="item">
         {
@@ -30,7 +28,7 @@ function Menu({ index } : {index: number}) {
       <div style={{height: '60px', position: 'relative', zIndex: 1}}>
  
         <view className='public'>
-          <Icon size="s" type={'edit'} style={{marginTop: '5px'}} />
+          <Icon size="s" type={'edit'} style={{marginTop: '7px'}} />
           <view >发布</view>
         </view>
       </div>

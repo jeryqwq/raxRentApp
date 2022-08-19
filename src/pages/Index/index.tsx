@@ -4,11 +4,15 @@ import Menu from '@/components/Menu';
 import { Slider } from '@alifd/meet';
 import Image from 'rax-image';
 import styles from './index.module.less';
-
+import Title from '@/components/Title'
+import TriggerList from '@/components/TriggerList';
+import ProductItem from '@/components/ProductItem';
+import OldItem from '@/components/OldItem';
+import PartItem from '@/components/PartItem';
 const menus = [
   {
     src: 'http://121.204.145.151:8087/icons/menu1.png',
-    title: '设备租凭'
+    title: '设备租赁'
   },
   {
     src: 'http://121.204.145.151:8087/icons/menu2.png',
@@ -85,6 +89,43 @@ const items = [
               </div> )
               }
               
+        </div>
+        
+        <Title title='设备租赁' path=''/>
+        <TriggerList defaultVal='' onChange={(value) => {
+        
+        }} list={[{label: 'xxx', value: ''}, {label: 'xxxx2', value: '1'}]} />
+        <div className={styles['prod-list']}>
+        {
+          new Array(6).fill(1).map(i => <ProductItem />)
+        }
+        </div>
+        {/* 设备租赁 end */}
+
+        <Title title="品牌设备" path=''/>
+        <div className={styles['brands']}>
+          {
+            new Array(6).fill(1).map(i => <div className="item">
+            <img src="http://121.204.145.151:8087/lease-center/appfile/download?id=e26aaa8d2a9648cabec31d7aca0e4f70" alt="" />
+            <div className="tit">卡特彼勒</div>
+          </div>)
+          }
+        </div>
+
+        <Title title='二手设备' path=''/>
+        <div className={styles['old-wrap']}>
+          {
+            new Array(4).fill(1).map(i => <div style={{width: '46%'}}>
+              <OldItem />
+            </div>)
+          }
+        </div>
+
+        <Title title='零件配件' path=''/>
+        <div className={styles['parts']}>
+          {
+            new Array(3).fill(1).map(i => <PartItem />)
+          }
         </div>
 
       </div>
