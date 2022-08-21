@@ -1907,7 +1907,7 @@
   dependencies:
     "@uni/video" "^1.0.5"
 
-"@uni/navigate@^1.0.6":
+"@uni/navigate@^1.0.10", "@uni/navigate@^1.0.6":
   version "1.0.10"
   resolved "https://registry.npmmirror.com/@uni/navigate/-/navigate-1.0.10.tgz#c1ad36369fd0f0bb49b4ac0a5a424d03eb93984f"
   integrity sha512-jqcinw8RKWoErT03P/dlOqmhrF8H+iLJOQ7qh2alsDD/xBNSIdkA+eLqTchbFZzI6GsmpbEvfBg/eiEa34Gfvw==
@@ -9390,7 +9390,7 @@ rax-refreshcontrol@^1.0.0:
   dependencies:
     universal-env "^3.0.0"
 
-rax-scrollview@^3.5.2:
+rax-scrollview@^3.5.2, rax-scrollview@^3.7.4:
   version "3.7.4"
   resolved "https://registry.npmmirror.com/rax-scrollview/-/rax-scrollview-3.7.4.tgz#115e25279b3dc1964b82c7a8a23751eafb94cad8"
   integrity sha512-oCV8nNBZ1RqnadjNOCxBCxLaoR0JAzVaOLLLL4PzMZ+72VHUAJOR/IYNVBsShomlv/5imfu7fPnK5BOrYePt+g==

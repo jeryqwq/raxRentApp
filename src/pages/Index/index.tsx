@@ -9,6 +9,8 @@ import TriggerList from '@/components/TriggerList';
 import ProductItem from '@/components/ProductItem';
 import OldItem from '@/components/OldItem';
 import PartItem from '@/components/PartItem';
+import CourseItem from '@/components/CourseItem';
+import NewsItem from '@/components/NewsItem';
 const menus = [
   {
     src: 'http://121.204.145.151:8087/icons/menu1.png',
@@ -61,7 +63,7 @@ const items = [
   return (
     <div className={'content-wrap'}>
       <div className="content">
-        <Slider   height={372}  autoplay={true} infinite={true}>
+        <Slider  height={372}  autoplay={true} infinite={true}>
               {items.map((img, idx) => {
                 return (
                   <Slider.Item key={idx}>
@@ -128,6 +130,14 @@ const items = [
           }
         </div>
 
+        <img src="https://www.fjrongshengda.com/wxapp/repairbg.png" style={{width: '700rpx', height: '300rpx', margin: '25rpx auto auto 25rpx'}}/>
+
+        <Title title='培训课程' path=''/>
+        <CourseItem />
+        <CourseItem />
+
+        <Title title='行业动态' path=''/>
+        <NewsItem />
       </div>
       <Menu index={0}/>
     </div>

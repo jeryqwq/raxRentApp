@@ -10,6 +10,12 @@
     },{
       "path": "/login",
       "source": "pages/Login/index"
+    },{
+      "path": "/category",
+      "source": "pages/Category/index"
+    },{
+      "path": "/cateSearch",
+      "source": "pages/CateSearch/index"
     }
   ],
   "window": {
