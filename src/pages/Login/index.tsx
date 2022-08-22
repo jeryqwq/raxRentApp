@@ -1,7 +1,7 @@
 import { createElement } from 'rax';
 import styles from './index.module.less';
 import Image from 'rax-image';
-import {  isWeChatMiniProgram } from '@uni/env';
+import { isWeChatMiniProgram } from '@uni/env';
 
 function Login() {
   return (

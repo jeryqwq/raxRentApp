@@ -3,6 +3,7 @@ import { getSearchParams } from 'rax-app';
 import styles from './index.module.less';
 import { Dialog, Picker, Icon } from '@alifd/meet';
 import ScrollView from 'rax-scrollview';
+import navigate from '@uni/navigate';
 
 const seasons = [
   [
@@ -42,10 +43,14 @@ function CategoryCopy() {
         <div className="item">地区<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
       </div>
       <ScrollView  onEndReached={() => {
-        
+
       }}className={styles['list']} style={{height: `calc( 100vh - 33px )`}}>
        {
-        new Array(10).fill(1).map(i =>  <div className="item">
+        new Array(10).fill(1).map(i =>  <div className="item" onClick={() => {
+          navigate.push({
+            url: "/pages/Rentdetail/index?id=" + '123123'
+          })
+        }}>
         <image style={{width: '230rpx'}} src="http://121.204.145.151:8087/lease-center//appfile/download?id=324e8ef626da4c9989dde953b1c901ae" alt="" mode="widthFix"/>
         <div className="rg">
           <div className="tit">出租美通LMT5094摊铺机</div>

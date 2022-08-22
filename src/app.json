@@ -16,6 +16,12 @@
     },{
       "path": "/cateSearch",
       "source": "pages/CateSearch/index"
+    },{
+      "path": "/rentDetail",
+      "source": "pages/Rentdetail/index",
+      "window": {
+        "title": "设备出租详情"
+      }
     }
   ],
   "window": {

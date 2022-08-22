@@ -1,0 +1,117 @@
+.page{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .buy{
+    height: 50px;
+
+  }
+}
+.wrap{
+  flex: 1;
+  overflow: scroll;
+  :global{
+    .list-wrap{
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      .item{
+        width: 48%;
+        .tit{
+          font-size: 13px;
+          color: #333;
+        }
+        .price{
+          display: flex;
+          justify-content: space-between;
+          font-size: 15px;
+        }
+      }
+    }
+    .info{
+      display: flex;
+      flex-wrap: wrap;
+      margin: 5px 0;
+      .item{
+        width: 50%;
+        font-size: 12px;
+        color: #B2B2B2;
+        .val{
+          color: #333;
+        }
+      }
+    }
+    .line4{
+      padding: 12px;
+
+      .cnt{
+        display: flex;
+        margin: 10rpx 0;
+        justify-content: space-between;
+        .lf{
+          display: flex;
+          align-items: center;
+          .name{
+            font-size: 14px;
+            color: #333;
+            margin: 10rpx 0 0 10rpx;
+          }
+          .stat{
+            color: #999;
+            font-size: 12px;
+            margin: 0 0 0 10rpx;
+
+          }
+        }
+        .rg{
+          .btn{
+            width: 184rpx;
+            height: 30px;
+            background-color: #105CCE;
+            color: white;
+            font-size: 13px;
+            border-radius: 5rpx;
+            text-align: center;
+            line-height: 30px;
+          }
+        }
+      }
+      
+    }
+    .mtit{
+      font-size: 15px;
+      color: #333;
+      font-weight: bold;
+    }
+    .line3{
+      padding: 12px;
+    }
+    .line2{
+      display: flex;
+      justify-content: space-around;
+      padding: 10rpx 0;
+      margin: 10rpx 0;
+      border-top: solid 1px #f2f2f2;
+      .item{
+        padding: 0 10rpx;
+        font-size: 13px;
+        color: #676767;
+      }
+    }
+    .line1{
+      display: flex;
+      justify-content: space-between;
+      padding: 5px;
+      .tit{
+        color: #333333;
+        font-size: 17px;
+      }
+      .price{
+        color: #666666;
+        font-size: 15px;
+      }
+    }
+  }
+
+}
