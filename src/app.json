@@ -22,6 +22,19 @@
       "window": {
         "title": "设备出租详情"
       }
+    },{
+      "path": "/commonLogin",
+      "source": "pages/Login/commonLogin",
+      "window": {
+        "title": "用户登录"
+      }
+    },
+    {
+      "path": "/registry",
+      "source": "pages/Login/registry",
+      "window": {
+        "title": "用户注册"
+      }
     }
   ],
   "window": {

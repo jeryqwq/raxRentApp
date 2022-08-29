@@ -1,15 +1,15 @@
 import { createElement } from 'rax';
 import Text from 'rax-text';
 import styles from './index.module.less';
-function ProductItem(item: any) {
+function ProductItem({item}: {item: any}) {
   return (
     <div className={styles['product-wrap']}>
-        <img src={'http://121.204.145.151:8087/lease-center//appfile/download?id=a85fb1107e0a47e09404313c442cbcc6'} alt="" />
+        <img src={'http://121.204.145.151:8087/lease-center/' + item.mainImgPath} alt="" />
         <div className="tit">
-          xxxxxxxx
+          {item.equipName}
         </div>
-        <div><span className='price'>¥9000</span>/月 <span className='status'>待租</span> </div>
-        <div className='loc'>福建省福州市</div>
+        <div><span className='price'>¥{item.monthlyRent}</span>/月 <span className='status'>待租</span> </div>
+        <div className='loc'>{item.releaseCityName}</div>
     </div>
   );
 }
