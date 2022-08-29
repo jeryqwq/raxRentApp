@@ -53,7 +53,7 @@ function Login() {
           <Input outline={false} name="phone" placeholder="请输入手机号" />
         </Form.Item>
         <Form.Item hasFeedback label="验证码" required requiredMessage="手机验证码不能为空" style={{position: 'relative'}}>
-          <Input outline={false} name="vcode" placeholder="请输入验证码" />
+          <Input style={{ width: '200rpx' }} outline={false} name="vcode" placeholder="请输入验证码" />
           <div
             style={{ width: '200rpx', color: '#0e5ecc', position: 'absolute', right: 0, zIndex: 3 }}
             onClick={async () => {
@@ -70,6 +70,11 @@ function Login() {
                 showToast({
                   content: '验证码发送成功，请打开手机查看!',
                   type: 'success',
+                })
+              }else{
+                showToast({
+                  content: '请输入手机号',
+                  type: 'fail'
                 })
               }
             }}

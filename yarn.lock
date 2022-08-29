@@ -1872,6 +1872,11 @@
   dependencies:
     "@uni/env" "^1.0.0"
 
+"@uni/apis@^1.1.10":
+  "integrity" "sha512-IGT4PngHQYtogCfqSTB7YjmbStfSChr1kBeJRXoHyd9PNll8hCifEtN9JqaZyDQblxORYpbO5qeQCeK5d+Onvw=="
+  "resolved" "https://registry.npmmirror.com/@uni/apis/-/apis-1.1.10.tgz"
+  "version" "1.1.10"
+
 "@uni/clipboard@^1.0.6":
   "integrity" "sha512-403daQbgH5WvQEC7ifqGzLoC62cnJGhLhDoSPyozOAWVsM1u23VkLsNvkKzdvoIsu0z3njGA2XOj2TI78BOrJg=="
   "resolved" "https://registry.npmmirror.com/@uni/clipboard/-/clipboard-1.0.8.tgz"

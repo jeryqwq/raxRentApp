@@ -17,7 +17,12 @@ function Category() {
       url,
       method: 'get'
     })
-    setMenu(res)
+    if(url !== '/appdict/partsType') {
+      setCurlist(res[0]?.children)
+      setMenu(res)
+    }else{
+      setCurlist(res.map(i => ({name: i.name, code: i.id, img: i.img})))
+    }
   }
   return (
    <div className="content-wrap">
@@ -31,7 +36,7 @@ function Category() {
           loadCate()
         }
        }} defaultActiveKey="ALL" contentStyle={{padding: 0}}>
-            <Tab.Item key='ALL' title="设备出售">
+            <Tab.Item key='ALL' title="全部设备">
              <div className="item-wrap">
               <div className="lf">
               <MyNav  dataSource={menus} onChange={(i) => {
@@ -43,11 +48,13 @@ function Category() {
                   {
                     curList.map((i) => <div className="item" onClick={() => {
                       navigate.push({
-                        url: '/pages/CateSearch/index?cateId=123123'
+                        url: `/pages/CateSearch/index?cateId=${i.id}&name=${i.name}&type=ALL`
                       })
                     }}>
-                    <img style={{width: '251rpx', height: '251rpx'}} src='http://121.204.145.151:8087/lease-center//appfile/download?id=f85e9accfe704fa89911f2274fd8286c'/>
-                    轮式挖掘机
+                      {
+                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                      }
+                    {i.name}
                   </div>)
                   }
                 </div>
@@ -64,13 +71,15 @@ function Category() {
               <div className="rg">
                 <div className="cate-items">
                   {
-                    new Array(5).fill(1).map((i) => <div className="item" onClick={() => {
+                    curList.map((i) => <div className="item" onClick={() => {
                       navigate.push({
-                        url: '/pages/CateSearch/index?cateId=123123'
+                        url: `/pages/CateSearch/index?cateId=${i.id}&name=${i.name}&type=RENT`
                       })
                     }}>
-                    <img style={{width: '251rpx', height: '251rpx'}} src='http://121.204.145.151:8087/lease-center//appfile/download?id=f85e9accfe704fa89911f2274fd8286c'/>
-                    轮式挖掘机
+                      {
+                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                      }
+                    {i.name}
                   </div>)
                   }
                 </div>
@@ -79,21 +88,18 @@ function Category() {
             </Tab.Item>
             <Tab.Item key='PART' title="配件商城">
             <div className="item-wrap">
-              <div className="lf">
-              <MyNav  dataSource={menus} onChange={(i) => {
-                setCurlist([i])
-              }}/>
-              </div>
               <div className="rg">
                 <div className="cate-items">
                   {
-                    new Array(5).fill(1).map((i) => <div className="item" onClick={() => {
+                    curList.map((i) => <div className="item" onClick={() => {
                       navigate.push({
-                        url: '/pages/CateSearch/index?cateId=123123'
+                        url: `/pages/CateSearch/index?cateId=${i.id}&name=${i.name}&type=PART`
                       })
                     }}>
-                    <img style={{width: '251rpx', height: '251rpx'}} src='http://121.204.145.151:8087/lease-center//appfile/download?id=f85e9accfe704fa89911f2274fd8286c'/>
-                    轮式挖掘机
+                      {
+                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                      }
+                    {i.name}
                   </div>)
                   }
                 </div>
@@ -102,7 +108,6 @@ function Category() {
             </Tab.Item>
         </Tab>
       </div>
-     
       <div>
 
       </div>

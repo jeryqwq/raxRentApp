@@ -1,7 +1,7 @@
 import { createElement, useState } from 'rax';
 import styles from './index.module.less';
 function MyNav({dataSource, onChange}) {
-  const [cur, setCur] = useState('')
+  const [cur, setCur] = useState(dataSource[0]?.id)
   return (
     <div className={styles['nav-wrap']}>
       {
