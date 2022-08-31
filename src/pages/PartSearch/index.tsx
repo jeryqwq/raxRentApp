@@ -38,37 +38,19 @@ function CategoryCopy() {
     title: typeMap[type] + '--' + name,
   });
   const loadCate = async (url = '/equipmentType/tree') => {
-    function deep(item, isChildrent = false) {
-      return {
-        label: item.name,
-        value: item.id,
-        children: item?.children?.map(deep)
-      }
-    }
-    if(url !== '/appdict/partsType') {
-      if(cacheMenu) {
-        setCates([cacheMenu, cacheMenu[0].children])
-      }else{
-        const res = await myRequest({
-          url,
-          method: 'get'
-        })
-        cacheMenu = [{ label: '全部', value: '全部', children: [{ label: '全部', value: '全部'}] }].concat(res.map(deep))
-      }
+    if(cacheMenu) {
+      setCates([cacheMenu])
     }else{
-      
+      const res = await myRequest({
+        url,
+        method: 'get'
+      })
+      cacheMenu = [{ label: '全部', value: '全部'}].concat(res.map(i => ({label: i.name, value: i.code})))
     }
   }
   useEffect(() => {
     (async () => {
       let conditions = []
-    if(params.isNew) {
-      conditions.push( {
-        "column": "is_new",
-        "operator": "eq",
-        "value": params.isNew
-    })
-    }
     if(params.releaseCityName) {
       conditions.push({
         "column": "release_city_name",
@@ -76,11 +58,18 @@ function CategoryCopy() {
         "value": params.releaseCityName
     },)
     }
-    if(params.equipBrand) {
+    if(params.partsType) {
       conditions.push({
-          "column": "equip_brand",
+        "column": "parts_type",
+        "operator": "like",
+        "value": params.partsType
+    },)
+    }
+    if(params.partsBrand) {
+      conditions.push({
+          "column": "parts_brand",
           "operator": "eq",
-          "value": params.equipBrand
+          "value": params.partsBrand
       })
     }
       const res = await myRequest({
@@ -95,13 +84,11 @@ function CategoryCopy() {
     })()
   }, [params])
   useEffect(() => {
-    if(type !== 'PART') {
-      loadCate()
-    }
+    loadCate('/appdict/partsType');
     (async () => {
       const res = await myRequest({
-        url: '/mallBrandInfo/all', 
-        method: 'post',
+        url: '/appdict/partsBrand',
+        method: 'get',
         data: {}
       })
       setBrands(res)
@@ -116,14 +103,14 @@ function CategoryCopy() {
       <div className="search-wrap">
         <div className="item" onClick={() => {
           setDia(true);
-          setCates([cacheMenu, cacheMenu[0].children])
+          setCates([cacheMenu])
           curType = 'CATE'
-        }}>设备<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
+        }}>类型<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item" onClick={() => {
           curType = 'BRAND'
-          setCates([[{label: '全部', value: '全部', children: [{label: '全部', value: '全部'}]}, ...brands.map(i => ({ label: i.brandName, value: i.brandName }))]])
+          setCates([[{label: '全部', value: '全部'}, ...brands.map(i => ({ label: i.name, value: i.name }))]])
           setDia(true);
-        }}>品牌<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
+        }}>品名<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item"
          onClick={() => {
           curType = 'ADDRESS'
@@ -146,9 +133,9 @@ function CategoryCopy() {
         }}>
         <image style={{width: '230rpx', height: '199rpx'}} src={"http://121.204.145.151:8087/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
         <div className="rg">
-          <div className="tit">{i.equipName || i.partsName}</div>
-          <div className="txt">{ i.description || i.equipBrand}</div>
-          <div className="price">¥{i.price || i.salePrice || i.monthlyRent} { (type === 'RENT' || i.type === 'EquipmentLease') && '/ 月' } <span style={{color: '#333', fontSize: '12px'}}>{i.releaseCityName}</span></div>
+          <div className="tit">{i.partsName}</div>
+          <div className="txt">{i.description}</div>
+          <div className="price">¥{i.price}   <span style={{color: '#333', fontSize: '12px'}}>{i.releaseCityName}</span></div>
           <div className="comp">{i.organName}</div>
         </div>
       </div>)
@@ -157,25 +144,25 @@ function CategoryCopy() {
       <Dialog onOk={() => {
         setList([])
         if(curType === 'CATE') {
-          const val = temp[1] === '全部' ? temp[0] === '全部' ? undefined : temp[0] : temp[1]
+          const val = temp[0] === '全部' ? undefined : temp[0] ;
           setParams({
             ...params,
             current: 1,
-            equipType: val
+            partsType: val
           })
         }else if(curType === 'BRAND') {
           const val = temp[0] === '全部' ? undefined : temp[0]
           setParams({
             ...params,
             current: 1,
-            equipBrand: val,
+            partsBrand: val,
           })
         }else if (curType === 'ADDRESS'){
           const val = temp[1] === '全部' ? temp[0] === '全部' ? undefined : temp[0] : temp[1]
           setParams({
             ...params,
             current: 1,
-            equipBrand: val,
+            releaseCityName: val,
           })
         }
       }} visible={showDialog} closeMode={['ok', 'cancel', 'mask']} title="请选择" onClose={() => setDia(false)}>

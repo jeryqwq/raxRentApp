@@ -17,6 +17,9 @@
       "path": "/cateSearch",
       "source": "pages/CateSearch/index"
     },{
+      "path": "/PartSearch",
+      "source": "pages/PartSearch/index"
+    },{
       "path": "/rentDetail",
       "source": "pages/Rentdetail/index",
       "window": {

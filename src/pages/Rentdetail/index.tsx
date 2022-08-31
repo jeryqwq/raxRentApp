@@ -4,10 +4,13 @@ import Text from 'rax-text';
 import { getSearchParams } from 'rax-app';
 import { Slider } from '@alifd/meet';
 import styles from './index.module.less';
-import ProductItem from '@/components/ProductItem';
+const apis = {
+  
+}
 function Rentdetail() {
-  const { id } = getSearchParams()
-  if(!id) return <div>非法访问</div>
+  const { id, type } = getSearchParams()
+  if(!id || !type) return <div>非法访问</div>
+
   return (
     <div className={styles['page']}>
       <div className={styles['wrap']}>
