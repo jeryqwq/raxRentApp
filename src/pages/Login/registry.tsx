@@ -2,7 +2,7 @@ import { createElement, useRef, useState } from 'rax';
 import styles from './index.module.less';
 import navigate from '@uni/navigate';
 import { myRequest } from '@/utils';
-import { getStorage, setStorage } from '@uni/storage';
+import { getStorage, getStorageSync } from '@uni/storage';
 import { Form, Input, Radio, Switch, DatePicker, Checkbox, NumberPicker } from '@alifd/meet';
 import { showToast } from '@uni/toast';
 const opts = {
@@ -20,7 +20,7 @@ function Login() {
     <div className={styles.commonwrap}>
       <div className={styles['title']}>融勝达注册</div>
       <Form ref={form} {...opts} scrollToFirstError onSubmit={async (values, errors) => {
-        const openId = await getStorage({
+        const openId =  getStorageSync({
           key: 'openid'
         })
         if (values) {

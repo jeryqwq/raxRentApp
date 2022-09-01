@@ -1,12 +1,12 @@
 import request from '@uni/request';
 import { showToast } from '@uni/toast';
-import { getStorage } from '@uni/storage';
+import { getStorageSync } from '@uni/storage';
 import navigate from '@uni/navigate';
 
 export const myRequest = (params) => {
   return new Promise((resolve, rej) => {
     (async () => {
-      const code = await getStorage({
+      const code = getStorageSync({
         key: 'token',
       })
       request({

@@ -3,7 +3,7 @@ import styles from './index.module.less';
 function OldItem({item}) {
   return (
     <div className={styles['item-wrap']}>
-      <img src={'http://121.204.145.151:8087/lease-center/' + item.mainImgPath} alt="" />
+      <img src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath} alt="" />
       <div className='item'>
         <div className="lf">设备型号</div>
         <div className="rg">{item.equipModel}</div>

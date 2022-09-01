@@ -131,7 +131,7 @@ function CategoryCopy() {
             url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + i.type
           })
         }}>
-        <image style={{width: '230rpx', height: '199rpx'}} src={"http://121.204.145.151:8087/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
+        <image style={{width: '230rpx', height: '199rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
         <div className="rg">
           <div className="tit">{i.partsName}</div>
           <div className="txt">{i.description}</div>

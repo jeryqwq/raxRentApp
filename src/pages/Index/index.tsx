@@ -15,35 +15,35 @@ import { myRequest } from '@/utils';
 import IsLogin from '@/components/isLogin';
 const menus = [
   {
-    src: 'http://121.204.145.151:8087/icons/menu1.png',
+    src: 'https://www.fjrongshengda.com/icons/menu1.png',
     title: '设备租赁'
   },
   {
-    src: 'http://121.204.145.151:8087/icons/menu2.png',
+    src: 'https://www.fjrongshengda.com/icons/menu2.png',
     title: '新机出售'
   },
   {
-    src: 'http://121.204.145.151:8087/icons/menu3.png',
+    src: 'https://www.fjrongshengda.com/icons/menu3.png',
     title: '二手设备'
   },
   {
-    src: 'http://121.204.145.151:8087/icons/menu4.png',
+    src: 'https://www.fjrongshengda.com/icons/menu4.png',
     title: '配件商城'
   },
   {
-    src: 'http://121.204.145.151:8087/icons/menu5.png',
+    src: 'https://www.fjrongshengda.com/icons/menu5.png',
     title: '机手求职'
   },
   {
-    src: 'http://121.204.145.151:8087/icons/menu6.png',
+    src: 'https://www.fjrongshengda.com/icons/menu6.png',
     title: '设备维修'
   },
   {
-    src: 'http://121.204.145.151:8087/icons/menu7.png',
+    src: 'https://www.fjrongshengda.com/icons/menu7.png',
     title: '品牌设备'
   },
   {
-    src: 'http://121.204.145.151:8087/icons/menu8.png',
+    src: 'https://www.fjrongshengda.com/icons/menu8.png',
     title: '物流运输'
   },
 
@@ -66,7 +66,7 @@ function Pages() {
       })
       setLunbo(res.map(i => ({
         type: 'image',
-        src: 'http://121.204.145.151:8087/lease-center/' + i.headUrl,
+        src: 'https://www.fjrongshengda.com/lease-center/' + i.headUrl,
       })))
       const res2 = await myRequest({
         url: '/mallBrandInfo/page',
@@ -150,7 +150,7 @@ function Pages() {
         <div className={styles['brands']}>
           {
            brands.map(i => <div className="item">
-            <img src={"http://121.204.145.151:8087/lease-center/" + i.brandLogo} alt="" />
+            <img src={"https://www.fjrongshengda.com/lease-center/" + i.brandLogo} alt="" />
             <div className="tit">{ i.brandName }</div>
           </div>)
           }

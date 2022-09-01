@@ -3,7 +3,7 @@ import { Input, Icon } from '@alifd/meet';
 import styles from './index.module.less';
 import navigate from '@uni/navigate';
 import { myRequest } from '@/utils';
-import { getStorage, setStorage } from '@uni/storage';
+import { getStorageSync, setStorage } from '@uni/storage';
 import { showToast } from '@uni/toast';
 
 function Login() {
@@ -20,7 +20,7 @@ function Login() {
       <div
         className={styles['login']}
         onClick={async () => {
-          const openid = await getStorage({
+          const openid =  getStorageSync({
             key: 'openid',
           })
           if (!pwd || !name) {

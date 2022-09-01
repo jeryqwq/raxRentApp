@@ -4,7 +4,7 @@ import styles from './index.module.less';
 function ProductItem({item}: {item: any}) {
   return (
     <div className={styles['product-wrap']}>
-        <img src={'http://121.204.145.151:8087/lease-center/' + item.mainImgPath} alt="" />
+        <img src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath} alt="" />
         <div className="tit">
           {item.equipName}
         </div>

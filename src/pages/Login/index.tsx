@@ -52,7 +52,7 @@ function Login() {
   return (
     <div>
       <div className={styles['login-wrap']}>
-        <Image style={{ width: '600rpx', height: '300rpx' }} source={{ uri: 'http://121.204.145.151:8087/icons/head2.png'}}/>
+        <Image style={{ width: '600rpx', height: '300rpx' }} source={{ uri: 'https://www.fjrongshengda.com/icons/head2.png'}}/>
         <div
           onClick={() => {
             if (isWeChatMiniProgram) {
