@@ -8,6 +8,24 @@
       "path": "/home",
       "source": "pages/Home/index"
     },{
+      "path": "/cart",
+      "source": "pages/Cart/index",
+      "window": {
+        "title": "购物车"
+      }
+    },{
+      "path": "/addressMan",
+      "source": "pages/AddressMan/index",
+      "window": {
+        "title": "地址管理"
+      }
+    },{
+      "path": "/orderAddress",
+      "source": "pages/OrderAddress/index",
+      "window": {
+        "title": "确认订单"
+      }
+    },{
       "path": "/login",
       "source": "pages/Login/index"
     },{
@@ -15,7 +33,10 @@
       "source": "pages/Category/index"
     },{
       "path": "/cateSearch",
-      "source": "pages/CateSearch/index"
+      "source": "pages/CateSearch/index",
+      "window": {
+        "title": "商品检索"
+      }
     },{
       "path": "/PartSearch",
       "source": "pages/PartSearch/index"
@@ -23,7 +44,7 @@
       "path": "/rentDetail",
       "source": "pages/Rentdetail/index",
       "window": {
-        "title": "设备出租详情"
+        "title": "详情"
       }
     },{
       "path": "/commonLogin",
@@ -46,5 +67,8 @@
   },
   "nativeConfig": {
     "appid": "wxd0f39c0fe7d35ddb"
+  },
+  "permission": {
+  
   }
 }

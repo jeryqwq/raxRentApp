@@ -5,9 +5,9 @@ import { Slider } from '@alifd/meet';
 import Image from 'rax-image';
 import styles from './index.module.less';
 import Title from '@/components/Title'
-import TriggerList from '@/components/TriggerList';
 import ProductItem from '@/components/ProductItem';
 import OldItem from '@/components/OldItem';
+import navigate from '@uni/navigate';
 import PartItem from '@/components/PartItem';
 import CourseItem from '@/components/CourseItem';
 import NewsItem from '@/components/NewsItem';
@@ -16,19 +16,25 @@ import IsLogin from '@/components/isLogin';
 const menus = [
   {
     src: 'https://www.fjrongshengda.com/icons/menu1.png',
-    title: '设备租赁'
+    title: '设备租赁',
+    url: '/pages/CateSearch/index?type=RENT'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu2.png',
-    title: '新机出售'
+    title: '新机出售',
+    url: '/pages/CateSearch/index?type=NEW'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu3.png',
-    title: '二手设备'
+    title: '二手设备',
+    url: '/pages/CateSearch/index?type=OLD'
+
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu4.png',
-    title: '配件商城'
+    title: '配件商城',
+    url: '/pages/CateSearch/index?type=PART'
+
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu5.png',
@@ -127,7 +133,11 @@ function Pages() {
         
         <div className={styles.menus}>
               {
-                menus.map((i) =><div className="item">
+                menus.map((i) =><div className="item" onClick={() => {
+                  i.url && navigate.push({
+                    url: i.url
+                  })
+                }}>
                 <img src={i.src} />
                 <div>{i.title}</div>
               </div> )
@@ -135,7 +145,7 @@ function Pages() {
               
         </div>
         
-        <Title title='设备租赁' path=''/>
+        <Title title='设备租赁' path='/pages/CateSearch/index?type=RENT'/>
         {/* <TriggerList defaultVal='' onChange={(value) => {
         
         }} list={[{label: 'xxx', value: ''}, {label: 'xxxx2', value: '1'}]} /> */}
@@ -156,7 +166,7 @@ function Pages() {
           }
         </div>
 
-        <Title title='二手设备' path=''/>
+        <Title title='二手设备' path='/pages/CateSearch/index?type=OLD'/>
         <div className={styles['old-wrap']}>
           {
             sales.slice(0, 3).map(i => <div style={{width: '46%'}}>
@@ -165,7 +175,7 @@ function Pages() {
           }
         </div>
 
-        <Title title='零件配件' path=''/>
+        <Title title='零件配件' path='/pages/CateSearch/index?type=PART'/>
         <div className={styles['parts']}>
           {
            parts.map(i => <PartItem item={i}/>)

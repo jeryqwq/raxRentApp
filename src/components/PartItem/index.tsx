@@ -1,10 +1,13 @@
 import { createElement } from 'rax';
-import View from 'rax-view';
-import Text from 'rax-text';
 import styles from './index.module.less';
+import navigate from '@uni/navigate'
 function PartItem({item}) {
   return (
-    <div className={styles['item-wrap']}>
+    <div className={styles['item-wrap']} onClick={() => {
+      navigate.push({
+        url: "/pages/Rentdetail/index?id=" + item.id + '&type=' + ('EquipmentParts')
+      })
+    }}>
         <image src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath}/>
         <div className="price">
           <span>¥{item.price}</span> <span style={{color: '#999999', fontSize: '12px'}}>{item.releaseCityName}</span>

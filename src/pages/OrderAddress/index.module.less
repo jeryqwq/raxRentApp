@@ -1,0 +1,104 @@
+
+.wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  :global{
+    .action-wrap{
+      height: 120px;
+      .infos{
+        padding: 10px;
+        .item{
+          font-size: 12px;
+          width: 320rpx;
+          display: inline-block;
+          .label{
+            color: #999999;
+            margin-right: 10px;
+          }
+          .txt{
+            color: #FE2525;
+          }
+        }
+      }
+      .action {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        border-top: solid 1px #EEEEEE;
+        .lf{
+          font-size: 15px;
+          color: #666666;
+          line-height: 40px;
+        }
+        .rg{
+          font-size: 18px;
+          color: white;
+          background-color: #FE2525;
+          width: 300rpx;
+          line-height: 40px;
+          text-align: center;
+        }
+      }
+    }
+  
+    .inner {
+      flex: 1;
+ 
+      .prods{
+        margin: 10px;
+        .store{
+          color: #333333;
+          font-size: 16px;
+          margin: 20px 0;
+        }
+        .item{
+          display: flex;
+          justify-content: space-between;
+          .rg{
+            width: 550rpx;
+            margin-left: 10rpx;
+            .price{
+              font-size: 15px;
+            }
+            .tit{
+              height: 40px;
+            }
+          }
+        }
+      }
+      .address{
+        padding: 10px;
+        .tit{
+          color: #333333;
+          font-size: 15px;
+          line-height: 75rpx;
+          height: 75rpx;
+          border-bottom: solid 1px #F4F4F4;
+          margin-bottom: 10px;
+        }
+        .desc{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .lf{
+            .item{
+              margin: 5px 0;
+            }
+            .label{
+              color: #999999;
+              font-size: 12px;
+              margin: 10px;
+            }
+            .txt{
+              font-size: 12px;
+            }
+          }
+          .rg{
+          }
+        }
+      }
+    }
+  }
+}

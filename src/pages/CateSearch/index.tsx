@@ -5,7 +5,7 @@ import { Dialog, Picker, Icon } from '@alifd/meet';
 import ScrollView from 'rax-scrollview';
 import navigate from '@uni/navigate';
 import { navigationBar } from '@uni/apis';
-import { CITYS, myRequest } from '@/utils';
+import { API_TYPES, CITYS, myRequest } from '@/utils';
 const typeMap  = {
   'ALL': '全部设备',
   PART: '零件',
@@ -20,7 +20,8 @@ const apis = {
   OLD: '/equipmentSale/page',
   NEW: '/equipmentSale/page'
 }
-let temp, curBrand, curAddress
+const types = API_TYPES
+let temp = [], curBrand, curAddress
 let curType
 let cacheMenu
 function CategoryCopy() {
@@ -31,11 +32,12 @@ function CategoryCopy() {
     current: 1,
     pages: 10,
     size: 12,
-    isNew: type === 'OLD' ? 0 : type === 'NEW' ? 1 : undefined
+    isNew: type === 'OLD' ? 0 : type === 'NEW' ? 1 : undefined,
+    equipType: cateId
   })
   const [list, setList] = useState([])
   navigationBar.setNavigationBarTitle({
-    title: typeMap[type] + '--' + name,
+    title: typeMap[type] + ( name ? '--' + name : ''),
   });
   const loadCate = async (url = '/equipmentType/tree') => {
     function deep(item, isChildrent = false) {
@@ -108,9 +110,9 @@ function CategoryCopy() {
     })()
   }, [])
   const [ showDialog, setDia ] = useState(false)
-  if(!cateId) {
-    return <div>非法访问</div>
-  }
+  // if(!cateId) {
+  //   return <div>非法访问</div>
+  // }
   return (
     <div className={styles['wrap']}>
       <div className="search-wrap">
@@ -118,17 +120,21 @@ function CategoryCopy() {
           setDia(true);
           setCates([cacheMenu, cacheMenu[0].children])
           curType = 'CATE'
+          temp = []
+
         }}>设备<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item" onClick={() => {
           curType = 'BRAND'
           setCates([[{label: '全部', value: '全部', children: [{label: '全部', value: '全部'}]}, ...brands.map(i => ({ label: i.brandName, value: i.brandName }))]])
           setDia(true);
+          temp = []
         }}>品牌<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item"
          onClick={() => {
           curType = 'ADDRESS'
           setCates([CITYS, CITYS[0].children])
           setDia(true);
+          temp = []
         }}
         >地区<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
       </div>
@@ -141,13 +147,13 @@ function CategoryCopy() {
        {
         list.map(i =>  <div className="item" onClick={() => {
           navigate.push({
-            url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + i.type
+            url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + (i.type || types[type === 'ALL'? 'NEW' : type])
           })
         }}>
         <image style={{width: '230rpx', height: '199rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
         <div className="rg">
           <div className="tit">{i.equipName || i.partsName}</div>
-          <div className="txt">{ i.description || i.equipBrand}</div>
+          <div className="txt">{ i.description || i.equipBrand} <span className='status'>{i.type === 'EquipmentLease' ?  '待租' : '待售'}</span> </div>
           <div className="price">¥{i.price || i.salePrice || i.monthlyRent} { (type === 'RENT' || i.type === 'EquipmentLease') && '/ 月' } <span style={{color: '#333', fontSize: '12px'}}>{i.releaseCityName}</span></div>
           <div className="comp">{i.organName}</div>
         </div>

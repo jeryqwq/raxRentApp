@@ -1,8 +1,14 @@
 import { createElement } from 'rax';
 import styles from './index.module.less';
+import navigate from '@uni/navigate'
+
 function NewsItem({item}) {
   return (
-    <div className={styles['wrap']}>
+    <div className={styles['wrap']} onClick={() => {
+      navigate.push({
+        url: "/pages/Rentdetail/index?id=" + item.id + '&type=' + ('EquipmentSale')
+      })
+    }}>
       <div className="lf">
         <div className="txt">{item.title}</div>
         <div className="info">{item.publishTime}   {item.readNum}阅</div>

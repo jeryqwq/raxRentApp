@@ -1,8 +1,14 @@
 import { createElement } from 'rax';
 import styles from './index.module.less';
+import navigate from '@uni/navigate'
+
 function OldItem({item}) {
   return (
-    <div className={styles['item-wrap']}>
+    <div className={styles['item-wrap']} onClick={() => {
+      navigate.push({
+        url: "/pages/Rentdetail/index?id=" + item.id + '&type=' + ('EquipmentSale')
+      })
+    }}>
       <img src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath} alt="" />
       <div className='item'>
         <div className="lf">设备型号</div>

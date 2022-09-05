@@ -3,7 +3,7 @@ import { showToast } from '@uni/toast';
 import { getStorageSync } from '@uni/storage';
 import navigate from '@uni/navigate';
 
-export const myRequest = (params) => {
+export const myRequest: any = (params) => {
   return new Promise((resolve, rej) => {
     (async () => {
       const code = getStorageSync({
@@ -41,6 +41,32 @@ export const myRequest = (params) => {
   })
 }
 
+export const getFiles =   (serverId: string) => {
+    return myRequest({
+        url: `/appfile/${serverId}`,
+        method: 'GET'
+    })
+}
+
+let commonData = {}
+
+export const setCommonData = function (key: string, data: any) {
+    commonData[key] = data
+}
+export const getCommonData = function (key: string) {
+    return commonData[key]
+}
+export const API_TYPES = {
+    PART: 'equipmentParts',
+    RENT: 'equipmentLease',
+    OLD: 'equipmentSale',
+    NEW: 'equipmentSale'
+  }
+export const TYPES_API = {
+    equipmentParts: 'PART',
+    equipmentLease: 'RENT',
+    equipmentSale: 'OLD',
+}
 export const CITYS = [
     {"label": "全部",
     "value": "全部", children: [{
@@ -127,7 +153,7 @@ export const CITYS = [
       "children": [
           {
               "label": "澳门",
-              "value": "澳门"
+              "value": "澳门市"
           }
       ]
   },

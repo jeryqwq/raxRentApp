@@ -40,7 +40,11 @@ function Menu({ index } : {index: number}) {
           <view >发布</view>
         </view>
       </div>
-      <div className="item">
+      <div className="item" onClick={() => {
+         navigate.push({
+          url: '/pages/Cart/index'
+        })
+      }}>
       {
           index === 2 ? 
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAABS9JREFUaEPdWm1oW1UYft7bpFIdLnVsFHQ2ETeduq0VQUSwKYKCIM1EsJ80RSfqYLbghk6kLX5NBbsVJmN+JHU26S/NEFFw0EQE/wySMWWbYzZFio6hTUVX1zT3lXOTe9ukN+bm4zZ3zZ/bwznnnvc5z/vxnHNLWCM/WiM4kAXE0RXtBclOQAIgA5ASkBFJBJpjVgesAdnQE/UywadrMGPgz+PNh6wMZgmIN+qVIPkYDChEZT8XIbsS/ua4VcFkudZGb7SpxmZzLAKwCedKsReEXgGKQX2XP9nhvyaA5BrZ8MwZN4DJDD/Dv3+0feiaBHLz7h+bmBAVxhMQmTl2jwBmyV/B9HvLcz8xgSCD4zNH73ZZEkUmqv/XtsY9Z2PMvFOAIRmu+NFtlgz4gow495wLkYQ2ZuFeFGNwIh0zLNo6TzXnmdcPJn/8yB1jyxkoCOS2vedFgA+uTMi5CXq123T44ujWfhVMQSBb+n/2gsjHzCAiWOoJNF84tFVRHQWB3PnSBbcsY1KAUGqk6laWaPPA+fe3KIqjIBAxaNu+i4IIKLZb6SnxrrPv3h4yDOSu/b/EidCYR72sdnBo66WIXOcOupQsaoiR7a9MhcFoEZSoMaJSU832mYMuzX5DQHYcmB4iwmB+RlR/09Wby/yxcv0EjsTecmpKwxCQe1+b7memER1RXDW3YsZY7I1bvYbTrxh43+CvbgYmNUbU2fqKf6lOmdhPwPCp4c2aiDXESNPglMNO9lm1jqjpq5ptluXWU8Obw0UxIgbf//pMAqD16UKSiYlcZrS2+f1XUwv1sWFXomggD7z5W5iAFivUERDN/fBqg6MoraUOfvDtS36Ae60g44kR+f5AQ9bZyFCMCOMfeufSEECDmtZS1W8+DWZmP+jwdy9v0gSj4YIoBrrfu6xkrlwVrKqvtKRfeW1hRj+Y+8L7N2XdHxhmxD0y65Tk1JRmbD7NpYIxsb9G5taT+zZqGasoRsTgh0f+4OXITSwTGZWtdzEFnBzYsIIAw4yINz8yOhtjmXcq9SM3BlarDZ7+9sWbnLlJpyggj47OhoioTQWRL4OZ2s984pu99Z6ygDx2ZG6Iq33sJXnX1y/UK2eQkuqImPT4B395mPBFtWoJA2NfPX+jJhRLBuI59ndTijmaSbXTRIgrdUW9Tcl3pq9EP8H/5bPr8l7ZFhUjYgc8H/6jntwjod3rLHPzWDSQJz6+Eody7OXE50/fUF8tNysrRsTkJ33zohC1iL9tgGuir84SN49FM/LUp//2M2hESHkihJlpqcKqH7rU7apwW5LkyERPXVZFL1rGqxPaffNO2GpiIKxX77mUPlWELX9zJpoq1U+MRLCnVtedi2ZEGNU5vtAEQBTHxtU8n4hzSKDTlnUOKZmR5UEmAEkS6b7YjCRggy3u7yDdmCyJETOMLPedZQFpD7KTeLFRGBHstEfKNSZ3fvvxpJtqwPNXbadDfaSdz/XWKRlIR2DRQzL7QFBcixnhYLe9tRJgPD52XF+bnARIxKJQ2nGW7K0TedxKzTUlrd0xnhQffNK3KpkfMw8Eu2vL/h7f8dmCn4hy7wdOBLrsK1RvWcGe3rHF2dwdYOaxYHetrqgrZrc6xpPKjU3WHEYi0G3PqyRKdy0TGekcTwqZ3pYDvvKMiAWUGGHWJD0zn55P2t2FgtIIMyKJSHIyDJCSSBiYI9jcgS7K+z8xJTMiFkgvmHLLMscneuy60sGI4XpjhPvWXZdyE8NxZaEmVGiDygJSqpFmzFszQP4DeUryYPtl/5gAAAAASUVORK5CYII=" alt="" />

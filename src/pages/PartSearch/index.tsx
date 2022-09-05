@@ -105,17 +105,22 @@ function CategoryCopy() {
           setDia(true);
           setCates([cacheMenu])
           curType = 'CATE'
+          temp = []
         }}>类型<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item" onClick={() => {
           curType = 'BRAND'
           setCates([[{label: '全部', value: '全部'}, ...brands.map(i => ({ label: i.name, value: i.name }))]])
           setDia(true);
+          temp = []
+
         }}>品名<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item"
          onClick={() => {
           curType = 'ADDRESS'
           setCates([CITYS, CITYS[0].children])
           setDia(true);
+          temp = []
+
         }}
         >地区<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
       </div>
@@ -128,7 +133,7 @@ function CategoryCopy() {
        {
         list.map(i =>  <div className="item" onClick={() => {
           navigate.push({
-            url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + i.type
+            url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + 'EquipmentParts'
           })
         }}>
         <image style={{width: '230rpx', height: '199rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
