@@ -1,26 +1,59 @@
 .wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   :global{
-    .button{
-      height: 40px;
-      line-height: 40px;
-      font-size: 17px;
-      color: #105CCE;
-      text-align: center;
-    }
-    .item{
-      padding: 10px;
+    .action{
+      height: 50px;
       display: flex;
       justify-content: space-between;
+      color: #909090;
+      font-size: 15px;
       align-items: center;
-      .rg{
-        font-size: 16px;
-        color: #999999;
+      .ok{
+        width: 100px;
+        height: 50px;
+        background-color: #105CCE;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        font-size: 15px;
       }
-      .addr{
-        color: #666666;
-        font-size: 13px;
-        width: 650rpx;
-
+    }
+    .content {
+      flex: 1
+    }
+    .item{
+      font-size: 15px;
+      color: #333333;
+      padding: 10px;
+      .store{
+      }
+      .sitem{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+        .rg{
+          display: flex;
+          justify-content: space-between;
+          .inner{
+            width: 480rpx;
+            margin-left: 20rpx;
+            .tit{
+              height: 50px;
+            }
+          }
+          .info{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+              .price{
+                font-size: 18px;
+              }
+          }
+        }
       }
     }
   }
