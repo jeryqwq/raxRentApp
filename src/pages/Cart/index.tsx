@@ -2,7 +2,9 @@ import { createElement, useEffect, useState } from 'rax';
 import styles from './index.module.less';
 import { Radio, NumberPicker } from '@alifd/meet';
 import Menu from '@/components/Menu';
-import { myRequest } from '@/utils';
+import { myRequest, setCommonData } from '@/utils';
+import { showToast } from '@uni/toast';
+import { navigate } from '@uni/apis';
 
 function Cart() {
   const [stores,setCarts] = useState<any>({})
@@ -109,7 +111,30 @@ function Cart() {
           <Radio  onClick={chooseAll}  checked={products.length === choose.length ||isAllChoose}>全选</Radio>
           <span style={{fontSize: '13px'}}>合计(不含运费)</span>
           <div className="price" style={{fontSize: '18px'}}>{totalPrice}</div>
-          <div className="ok">选好了</div>
+          <div className="ok" onClick={() => {
+            if(!choose.length) {
+              showToast('您还未选择结算商品，请选择后下单！')
+              return 
+            }
+            let prods: any[] = []
+            for (const key in stores) {
+              const element = stores[key];
+              const items = element.filter((i: any) => choose.map((j: any) => j.id).includes(i.id))
+              if(items && items.length) {
+                prods.push({
+                  storeName: element[0].storeName,
+                  details: items
+                })
+              }
+            }
+            setCommonData('tempOrder',{
+              prods,
+              isCart: 1
+            } )
+            navigate.push({
+              url: '/pages/OrderAddress/index',
+            })
+          }}>选好了</div>
           </div>
         </div>
       </div>

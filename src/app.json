@@ -27,10 +27,16 @@
       }
     },{
       "path": "/login",
-      "source": "pages/Login/index"
+      "source": "pages/Login/index",
+      "window": {
+        "title": "登录"
+      }
     },{
       "path": "/category",
-      "source": "pages/Category/index"
+      "source": "pages/Category/index",
+      "window": {
+        "title": "分类"
+      }
     },{
       "path": "/cateSearch",
       "source": "pages/CateSearch/index",
@@ -39,12 +45,21 @@
       }
     },{
       "path": "/PartSearch",
-      "source": "pages/PartSearch/index"
+      "source": "pages/PartSearch/index",
+      "window": {
+        "title": "检索"
+      }
     },{
       "path": "/rentDetail",
       "source": "pages/Rentdetail/index",
       "window": {
         "title": "详情"
+      }
+    },{
+      "path": "/userCenter",
+      "source": "pages/userCenter/index",
+      "window": {
+        "title": "个人中心"
       }
     },{
       "path": "/commonLogin",
