@@ -14,7 +14,7 @@ function NewsItem({item}) {
         <div className="info">{item.publishTime}   {item.readNum}阅</div>
       </div>
       <div className="rg">
-        <image src={'https://www.fjrongshengda.com/lease-center/' + item.headUrl} alt="" style={{width: '240rpx'}}/>
+        <img src={'https://www.fjrongshengda.com/lease-center/' + item.headUrl} alt="" style={{width: '240rpx'}}/>
         {/* <img src="https://www.fjrongshengda.com/wxapp/repairbg.png" style={{width: '240rpx', height: '130rpx'}}/> */}
       </div>
       

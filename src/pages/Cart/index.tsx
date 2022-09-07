@@ -82,7 +82,7 @@ function Cart() {
                }}
               /></div>
               <div className="rg">
-                <image src={`https://www.fjrongshengda.com/lease-center/${i.mainImgPath}`} style={{ width: '75px', height: '75px' }}/>
+                <img src={`https://www.fjrongshengda.com/lease-center/${i.mainImgPath}`} style={{ width: '75px', height: '75px' }}/>
                 <div className="inner">
                   <div className="tit">{i.productName}</div>
                   <div className="info">

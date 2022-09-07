@@ -154,7 +154,7 @@ function Rentdetail() {
         </div>
         <div className="cnt">
         <div className="lf">
-            <image src="https://www.fjrongshengda.com/images/store.png" style={{width: '60px', height: '60px'}}/>
+            <img src="https://www.fjrongshengda.com/images/store.png" style={{width: '60px', height: '60px'}}/>
             <div className="rg">
               <div className="name">商家名称</div>
               <div className="stat">身份认证</div>
@@ -179,7 +179,7 @@ function Rentdetail() {
               url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + type
             })
            }}>
-              <image  style={{width: '325rpx', height: '145px'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" />
+              <img  style={{width: '325rpx', height: '145px'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" />
               <div className="tit">{i.equipName}</div>
               <div className="price">
               { detailType === 'RENT' ?  <span style={{fontSize: '12px'}}>
@@ -197,7 +197,7 @@ function Rentdetail() {
     </div>
       <div className={styles['buy']}>
         <div className="lf">
-          <image style={{width: '20px', height: '20px',marginLeft: '5px'}} src="https://www.fjrongshengda.com/wxapp/cart.png"/>
+          <img style={{width: '20px', height: '20px',marginLeft: '5px'}} src="https://www.fjrongshengda.com/wxapp/cart.png"/>
           购物车
         </div>
         <div className="rg">

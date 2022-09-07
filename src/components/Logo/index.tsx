@@ -10,5 +10,5 @@ interface LogoProps {
 export default (props: LogoProps) => {
   const { uri } = props;
   const source = { uri };
-  return <Image className={styles.logo} source={source} />;
+  return <img className={styles.logo} source={source} />;
 };

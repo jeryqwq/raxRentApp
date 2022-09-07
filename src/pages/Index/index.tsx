@@ -116,10 +116,8 @@ function Pages() {
                 return (
                   <Slider.Item key={idx}>
                     <View>
-                      <Image
-                        source={{
-                          uri: img.src
-                        }}
+                      <img
+                        src={img.src }
                         style={{
                           width: '100%',
                           height: 372,

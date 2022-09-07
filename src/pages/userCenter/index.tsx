@@ -19,8 +19,8 @@ function User() {
             </div>
             <div className="rg">
               <div className="icons">
-                <image className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/server.png'/>
-                <image className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/chat.png'/>
+                <img className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/server.png'/>
+                <img className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/chat.png'/>
               </div>
               <div className="info">
                 吐泡泡的鱼 <span style={{fontSize: '10px'}}>xxx认证</span>
@@ -37,23 +37,23 @@ function User() {
             <div className="items">
               <div className="item">
                 <Badge count={2}>
-                  <image style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step0.png'}/>
+                  <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step0.png'}/>
                 </Badge>
                 <div>待确认</div></div>
               <div className="item">
                 <Badge count={2}>
-                  <image style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step1.png'}/>
+                  <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step1.png'}/>
                 </Badge>
                 <div>待确认</div>
               </div>
               <div className="item">
               <Badge count={2}>
-                  <image style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step2.png'}/>
+                  <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step2.png'}/>
                 </Badge>
                 <div>待确认</div></div>
               <div className="item">
               <Badge count={2}>
-                  <image style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step3.png'}/>
+                  <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step3.png'}/>
                 </Badge>
                 <div>待确认</div></div>
             </div>
@@ -65,14 +65,14 @@ function User() {
           <div className="line2">
             <div className="items">
               <div className="item sty2">
-              <image style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/address.png'}/>
+              <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/address.png'}/>
                 常用地址</div>
               <div className="item sty2">
-                <image style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/repaire.png'}/>
+                <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/repaire.png'}/>
                 维修订单
               </div>
               <div className="item sty2">
-              <image style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/msg.png'}/>
+              <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/msg.png'}/>
                 
                 修改密码</div>
             </div>

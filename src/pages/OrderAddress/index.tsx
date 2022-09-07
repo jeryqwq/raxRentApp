@@ -81,7 +81,7 @@ function OrderAddress() {
             {
               i.details.map(j => (<div className="item">
               <div className="lf">
-                <image mode="widthFix" style={{width: '200rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + j.mainImgPath}/>
+                <img mode="widthFix" style={{width: '200rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + j.mainImgPath}/>
               </div>
               <div className="rg">
                 <div className="tit">{j.productName}</div>

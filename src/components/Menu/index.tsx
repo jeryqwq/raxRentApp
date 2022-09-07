@@ -2,14 +2,15 @@ import { createElement } from 'rax';
 import styles from './index.module.less'
 import { Icon } from '@alifd/meet';
 import navigate from '@uni/navigate';
-
+import { isWeChatMiniProgram } from '@uni/env';
 function Menu({ index } : {index: number}) {
   return (
     <div style={{position: 'relative', zIndex: 1}}>
     <div className={ styles['menu-wrap']}>
       <div className="item" onClick={() => {
         navigate.push({
-          url: '/pages/Index/index'
+          url: isWeChatMiniProgram ? '/pages/Index/index' : '/',
+          isHash: !isWeChatMiniProgram
         })
       }}>
         {
@@ -22,7 +23,8 @@ function Menu({ index } : {index: number}) {
       </div>
       <div className="item" onClick={() => {
         navigate.push({
-          url: '/pages/Category/index'
+          url: isWeChatMiniProgram ? '/pages/Category/index' : 'Category',
+          isHash: !isWeChatMiniProgram
         })
       }}>
       {
@@ -35,14 +37,15 @@ function Menu({ index } : {index: number}) {
       </div>
       <div style={{height: '60px', position: 'relative', zIndex: 1}}>
  
-        <view className='public'>
+        <div className='public'>
           <Icon size="s" type={'edit'} style={{marginTop: '7px'}} />
           <view >发布</view>
-        </view>
+        </div>
       </div>
       <div className="item" onClick={() => {
          navigate.push({
-          url: '/pages/Cart/index'
+          url: isWeChatMiniProgram ? '/pages/Cart/index' : 'Cart',
+          isHash: !isWeChatMiniProgram
         })
       }}>
       {
@@ -55,7 +58,8 @@ function Menu({ index } : {index: number}) {
         </div>
       <div className="item" onClick={() => {
          navigate.push({
-          url: '/pages/userCenter/index'
+          url: isWeChatMiniProgram ? '/pages/userCenter/index' : 'userCenter',
+          isHash: !isWeChatMiniProgram
         })
       }}>
       {

@@ -65,7 +65,7 @@ function Category() {
                       })
                     }}>
                       {
-                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                        i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
                       }
                     {i.name}
                   </div>)
@@ -90,7 +90,7 @@ function Category() {
                       })
                     }}>
                       {
-                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                        i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
                       }
                     {i.name}
                   </div>)
@@ -115,7 +115,7 @@ function Category() {
                       })
                     }}>
                       {
-                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                        i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
                       }
                     {i.name}
                   </div>)
@@ -140,7 +140,7 @@ function Category() {
                       })
                     }}>
                       {
-                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                        i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
                       }
                     {i.name}
                   </div>)
@@ -160,7 +160,7 @@ function Category() {
                       })
                     }}>
                       {
-                        i.img ? <image mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
+                        i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
                       }
                     {i.name}
                   </div>)

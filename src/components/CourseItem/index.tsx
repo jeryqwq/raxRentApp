@@ -4,7 +4,7 @@ function CourseItem({item}) {
   return (
     <div className={styles['course-wrap']}>
         <div className="lf">
-          <image style={{ height: '340rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + item.mainImgPath}/>
+          <img style={{ height: '340rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + item.mainImgPath}/>
         </div>
         <div className="rg">
           <div className="title">{item.courseName}     </div>

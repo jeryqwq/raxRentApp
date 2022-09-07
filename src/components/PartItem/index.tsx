@@ -8,7 +8,7 @@ function PartItem({item}) {
         url: "/pages/Rentdetail/index?id=" + item.id + '&type=' + ('EquipmentParts')
       })
     }}>
-        <image src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath}/>
+        <img src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath}/>
         <div className="price">
           <span>¥{item.price}</span> <span style={{color: '#999999', fontSize: '12px'}}>{item.releaseCityName}</span>
         </div>

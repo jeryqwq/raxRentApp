@@ -150,7 +150,7 @@ function CategoryCopy() {
             url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + (i.type || types[type === 'ALL'? 'NEW' : type])
           })
         }}>
-        <image style={{width: '230rpx', height: '199rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
+        <img style={{width: '230rpx', height: '199rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
         <div className="rg">
           <div className="tit">{i.equipName || i.partsName}</div>
           <div className="txt">{ i.description || i.equipBrand} <span className='status'>{i.type === 'EquipmentLease' ?  '待租' : '待售'}</span> </div>
