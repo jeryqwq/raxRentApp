@@ -2,9 +2,8 @@ import { createElement, useEffect, useState } from 'rax';
 import styles from './index.module.less';
 import { Radio, NumberPicker } from '@alifd/meet';
 import Menu from '@/components/Menu';
-import { myRequest, setCommonData } from '@/utils';
+import { myRequest, naviTo, setCommonData } from '@/utils';
 import { showToast } from '@uni/toast';
-import { navigate } from '@uni/apis';
 
 function Cart() {
   const [stores,setCarts] = useState<any>({})
@@ -131,9 +130,7 @@ function Cart() {
               prods,
               isCart: 1
             } )
-            navigate.push({
-              url: '/pages/OrderAddress/index',
-            })
+            naviTo('/pages/OrderAddress/index', 'orderAddress')
           }}>选好了</div>
           </div>
         </div>

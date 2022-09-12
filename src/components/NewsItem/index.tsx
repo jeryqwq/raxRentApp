@@ -1,13 +1,12 @@
+import { naviTo } from '@/utils';
 import { createElement } from 'rax';
 import styles from './index.module.less';
-import navigate from '@uni/navigate'
 
 function NewsItem({item}) {
   return (
     <div className={styles['wrap']} onClick={() => {
-      navigate.push({
-        url: "/pages/Rentdetail/index?id=" + item.id + '&type=' + ('EquipmentSale')
-      })
+      const query = "?id=" + item.id + '&type=' + ('EquipmentSale')
+      naviTo('/pages/Rentdetail/index' + query, '/rentDetail' + query)
     }}>
       <div className="lf">
         <div className="txt">{item.title}</div>

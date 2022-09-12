@@ -1,9 +1,9 @@
 import { createElement, useEffect, useRef, useState } from 'rax';
 import styles from './index.module.less';
 import { Checkbox,CascaderSelect, Drawer, Input , Form, Dialog, Picker, Button} from '@alifd/meet';
-import { myRequest, CITYS } from '@/utils';
-import navigate from '@uni/navigate';
+import { myRequest, CITYS, naviTo } from '@/utils';
 import { showToast } from '@uni/toast';
+import { getSearchParams } from 'rax-app';
 let tempCity = [...CITYS]
 tempCity.shift()
 let addressId = ''
@@ -11,6 +11,8 @@ function AddressMan() {
   const [address, setAddress] = useState<any[]>([])
   const [vis, setVis] = useState<boolean>(false)
   const formInstance = useRef(null);
+  const { open } = getSearchParams()
+
   async function loadData() {
     const res = await myRequest({
       method: 'get',
@@ -90,9 +92,9 @@ function AddressMan() {
         {
           address.map(i => <>
           <div className="item" onClick={() => {
-            navigate.push({
-              url: `/pages/OrderAddress/index?id=${i.id}&receiveUser=${i.receiveUser}&contactNumber=${i.contactNumber}&address=${i.address}`
-            })
+            if(open === '0') return 
+            const query = `?id=${i.id}&receiveUser=${i.receiveUser}&contactNumber=${i.contactNumber}&address=${i.address}`
+            naviTo(`/pages/OrderAddress/index${query}`, 'orderAddress' + query)
           }}>
           <div className="lf">
             <div className="name">{i.receiveUser} <span>{i.contactNumber}</span>

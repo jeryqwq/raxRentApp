@@ -2,7 +2,6 @@ import { createElement, useEffect, useState } from 'rax';
 import View from 'rax-view';
 import Menu from '@/components/Menu';
 import { Slider } from '@alifd/meet';
-import Image from 'rax-image';
 import styles from './index.module.less';
 import Title from '@/components/Title'
 import ProductItem from '@/components/ProductItem';
@@ -17,24 +16,28 @@ const menus = [
   {
     src: 'https://www.fjrongshengda.com/icons/menu1.png',
     title: '设备租赁',
-    url: '/pages/CateSearch/index?type=RENT'
+    url: '/pages/CateSearch/index?type=RENT',
+    h5: '/cateSearch?type=RENT'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu2.png',
     title: '新机出售',
-    url: '/pages/CateSearch/index?type=NEW'
+    url: '/pages/CateSearch/index?type=NEW',
+    h5: '/cateSearch?type=NEW'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu3.png',
     title: '二手设备',
-    url: '/pages/CateSearch/index?type=OLD'
+    url: '/pages/CateSearch/index?type=OLD',
+    h5: '/cateSearch?type=OLD'
+
 
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu4.png',
     title: '配件商城',
-    url: '/pages/CateSearch/index?type=PART'
-
+    url: '/pages/CateSearch/index?type=PART',
+    h5: '/cateSearch?type=PART'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu5.png',

@@ -1,12 +1,11 @@
 import { createElement } from 'rax';
 import styles from './index.module.less';
-import navigate from '@uni/navigate'
+import { naviTo } from '@/utils';
 function PartItem({item}) {
   return (
     <div className={styles['item-wrap']} onClick={() => {
-      navigate.push({
-        url: "/pages/Rentdetail/index?id=" + item.id + '&type=' + ('EquipmentParts')
-      })
+     const q = "?id=" + item.id + '&type=' + ('EquipmentParts')
+      naviTo("/pages/Rentdetail/index" + q, 'rentDetail' + q)
     }}>
         <img src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath}/>
         <div className="price">

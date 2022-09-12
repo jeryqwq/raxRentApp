@@ -2,8 +2,7 @@ import { createElement, useEffect, useState } from 'rax';
 import { Tab, Icon} from '@alifd/meet';
 import styles from './index.module.less';
 import Menu from '@/components/Menu';
-import navigate from '@uni/navigate';
-import { myRequest } from '@/utils';
+import { myRequest, naviTo } from '@/utils';
 import MyNav from '@/components/MyNav'
 let tempCate = {
 
@@ -60,9 +59,8 @@ function Category() {
                 <div className="cate-items">
                   {
                     curList.map((i) => <div className="item" onClick={() => {
-                      navigate.push({
-                        url: `/pages/CateSearch/index?cateId=${i.id}&name=${i.name}&type=ALL`
-                      })
+                  const q =  `?cateId=${i.id}&name=${i.name}&type=ALL`
+                      naviTo('/pages/CateSearch/index' + q, '/cateSearch' + q)
                     }}>
                       {
                         i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
@@ -85,9 +83,8 @@ function Category() {
                 <div className="cate-items">
                   {
                     curList.map((i) => <div className="item" onClick={() => {
-                      navigate.push({
-                        url: `/pages/CateSearch/index?cateId=${i.id}&name=${i.name}&type=OLD`
-                      })
+                      const q =  `?cateId=${i.id}&name=${i.name}&type=OLD`
+                      naviTo('/pages/CateSearch/index' + q, '/cateSearch' + q)
                     }}>
                       {
                         i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
@@ -110,9 +107,9 @@ function Category() {
                 <div className="cate-items">
                   {
                     curList.map((i) => <div className="item" onClick={() => {
-                      navigate.push({
-                        url: `/pages/CateSearch/index?cateId=${i.id}&name=${i.name}&type=NEW`
-                      })
+                    
+                      const q =  `?cateId=${i.id}&name=${i.name}&type=NEW`
+                      naviTo('/pages/CateSearch/index' + q, '/cateSearch' + q)
                     }}>
                       {
                         i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
@@ -135,9 +132,8 @@ function Category() {
                 <div className="cate-items">
                   {
                     curList.map((i) => <div className="item" onClick={() => {
-                      navigate.push({
-                        url: `/pages/CateSearch/index?cateId=${i.id}&name=${i.name}&type=RENT`
-                      })
+                      const q =  `?cateId=${i.id}&name=${i.name}&type=RENT`
+                      naviTo('/pages/CateSearch/index' + q, '/cateSearch' + q)
                     }}>
                       {
                         i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>
@@ -155,9 +151,8 @@ function Category() {
                 <div className="cate-items">
                   {
                     curList.map((i) => <div className="item" onClick={() => {
-                      navigate.push({
-                        url: `/pages/PartSearch/index?cateId=${i.id}&name=${i.name}&type=PART`
-                      })
+                      const q =  `?cateId=${i.id}&name=${i.name}&type=PART`
+                      naviTo('/pages/CateSearch/index' + q, '/cateSearch' + q)
                     }}>
                       {
                         i.img ? <img mode="aspectFill" style={{width: '251rpx', height: '251rpx'}} src={ i.img }/> : <div style={{height: '251rpx', lineHeight: '251rpx'}}>暂无图片</div>

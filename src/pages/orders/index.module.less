@@ -1,0 +1,68 @@
+
+.wrap{
+  height: 100%;
+  background-color: #F3F3F3;
+  :global{
+    .items{
+      .item{
+        background-color: white;
+        margin: 5px 0;
+        padding:0 10px;
+        .line3{
+          font-style: 14px;
+          color: #333333;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+        }
+        .line2{
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+          .lf{
+            
+          }
+          .rg{
+            padding: 0 10px;
+            width: 600rpx;
+            .txt{
+              font-size: 14px;
+              color: #4C4C4C;
+              height: 40px;
+              overflow: hidden;
+            }
+            .price{
+              font-size: 18px;
+              display: flex;
+              justify-content: space-between;
+              >.num{
+                font-style: 12px;
+                color: #999;
+              }
+            }
+          }
+        }
+        .line1{
+          display: flex;
+          justify-content: space-between;
+          height: 40px;
+          line-height: 40px;
+          padding: 0 10px;
+          border-bottom: solid 1px #EEEEEE;
+          .num{
+            color: #999999;
+            font-size: 13px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 500rpx;
+          }
+          .stat{
+            color: #333333;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

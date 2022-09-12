@@ -2,7 +2,33 @@ import request from '@uni/request';
 import { showToast } from '@uni/toast';
 import { getStorageSync } from '@uni/storage';
 import navigate from '@uni/navigate';
+import { isWeChatMiniProgram } from '@uni/env';
 
+export const getBrand = function () {
+    return myRequest({
+        url: '/mallBrandInfo/all',
+        method: 'post',
+        data: {}
+    })
+}
+
+export const  getUuid = function () {
+    let s:any[] = [];
+    let hexDigits = "0123456789abcdef";
+      for (let i = 0; i < 36; i++) {
+          s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+      }
+      s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+      s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+     return s.join("");
+  };
+  
+export const naviTo = function (url, h5url) {
+    navigate.push({
+      url: isWeChatMiniProgram ? url : h5url,
+      isHash: !isWeChatMiniProgram
+    })
+  }
 export const myRequest: any = (params) => {
   return new Promise((resolve, rej) => {
     (async () => {

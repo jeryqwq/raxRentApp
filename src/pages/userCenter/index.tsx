@@ -3,12 +3,55 @@ import styles from './index.module.less';
 import { Badge, Avatar, Icon } from '@alifd/meet';
 import Menu from '@/components/Menu';
 import { myRequest, setCommonData } from '@/utils';
-import { showToast } from '@uni/toast';
+import { isWeChatMiniProgram } from '@uni/env';
 import { navigate } from '@uni/apis';
-import Title from '@/components/Title';
+ const orderStatus = {
+  1: '下单待支付',
+   2:'已经支付',
+    3:'已经发货' ,
+    10:'结束'
+}
 
 function User() {
-
+  const [_user, setUser] = useState({ user: {} })
+  const [nums, setNums] = useState<any[]>([])
+  const [msg, setMsg] = useState({})
+  useEffect(() => {
+    loadUser()
+    reload()
+  }, [])
+  async function loadUser() {
+    const res = await myRequest({
+      url: '/sysuser/getUserInfo',
+      method: 'get'
+    })
+    setUser(res)
+  }
+  const reload = async () => {
+    const res = await myRequest( {
+      method: 'post',
+      url: '/mallOrderMaster/pageMy',
+      data:{
+        "current": 0,
+        size: 99999
+      }
+    })
+    const res2 = await myRequest({
+      url: '/businessCenter/pageBusinessNotice',
+      data: {
+        current: 0,
+        size: 1
+      },
+      method: 'post'
+    })
+    res2.records.length && setMsg(res2.records[0])
+    let temp:any = {};
+    (res.records || []).forEach(i => {
+      temp[i.orderStatus] ? temp[i.orderStatus]++ : (temp[i.orderStatus] = 1)
+    })
+    setNums(temp);
+  }
+  const {user} = _user as any
   return (
     <div className="content-wrap">
       <div className="content" style={{paddingBottom: 0}}>
@@ -20,54 +63,79 @@ function User() {
             <div className="rg">
               <div className="icons">
                 <img className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/server.png'/>
-                <img className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/chat.png'/>
+                <img className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/chat.png'  onClick={() => {
+                navigate.push({
+                  url: isWeChatMiniProgram ? '/pages/message/index' : 'message',
+                  refresh: !isWeChatMiniProgram
+                })
+              }}/>
               </div>
               <div className="info">
-                吐泡泡的鱼 <span style={{fontSize: '10px'}}>xxx认证</span>
+                {user.name} <span style={{fontSize: '10px'}}>{_user?.brand?.status === 1 ? '企业认证' : '个人'}</span>
               </div>
               <div className="phone">
-                132312312321
+                {user.username}
               </div>
             </div>
           </div>
           <div className="line2">
             <div className="more">
-            我的订单<span className='tip'>查看更多</span>
+            我的订单<span className='tip' onClick={() => {
+              navigate.push({
+                url: isWeChatMiniProgram ? '/pages/orders/index' : 'orders',
+                refresh: !isWeChatMiniProgram
+              })
+            }}>查看更多</span>
             </div>
             <div className="items">
               <div className="item">
-                <Badge count={2}>
+                <Badge count={nums[1]}>
                   <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step0.png'}/>
                 </Badge>
-                <div>待确认</div></div>
+                <div>{orderStatus[1]}</div></div>
               <div className="item">
-                <Badge count={2}>
+                <Badge count={nums[2]}>
                   <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step1.png'}/>
                 </Badge>
-                <div>待确认</div>
+                <div>{orderStatus[2]}</div>
               </div>
               <div className="item">
-              <Badge count={2}>
+              <Badge count={nums[3]}>
                   <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step2.png'}/>
                 </Badge>
-                <div>待确认</div></div>
+                <div>{orderStatus[3]}</div></div>
               <div className="item">
-              <Badge count={2}>
+              <Badge count={nums[10]}>
                   <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step3.png'}/>
                 </Badge>
-                <div>待确认</div></div>
+                <div>{orderStatus['10']}</div></div>
             </div>
           </div>
-          <div className="line3">
-            <span style={{ fontSize: '16px' }}>通知</span><span style={{margin: '0 10px'}}>|</span><span className='txt'>商家已经确认您的租赁订单，挖掘机沃尔商家已经确认您的租赁订单，挖掘机沃尔</span> {'>'}
+          <div className="line3" onClick={() => {
+            navigate.push({
+              url: isWeChatMiniProgram ? '/pages/message/index' : 'message',
+              refresh: !isWeChatMiniProgram
+            })
+          }}>
+            <span style={{ fontSize: '16px' }}>通知</span><span style={{margin: '0 10px'}}>|</span><span className='txt'>{msg.msg ? msg.msg : '暂无'}</span> {'>'}
           </div>
 
           <div className="line2">
             <div className="items">
-              <div className="item sty2">
+              <div className="item sty2" onClick={() => {
+                navigate.push({
+                  url: isWeChatMiniProgram ? '/pages/AddressMan/index?open=0' : 'addressMan?open=0',
+                  refresh: !isWeChatMiniProgram
+                })
+              }}>
               <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/address.png'}/>
                 常用地址</div>
-              <div className="item sty2">
+              <div className="item sty2"  onClick={() => {
+                navigate.push({
+                  url: isWeChatMiniProgram ? '/pages/repairList/index' : 'repairList',
+                  refresh: !isWeChatMiniProgram
+                })
+              }}>
                 <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/repaire.png'}/>
                 维修订单
               </div>
@@ -79,8 +147,7 @@ function User() {
           </div>
         </div>
       </div>
-    <Menu index={3}/>
-
+      <Menu index={3}/>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { getCommonData, myRequest } from '@/utils';
+import { getCommonData, myRequest, naviTo } from '@/utils';
 import { createElement, useEffect, useState } from 'rax';
 import { Dialog, Drawer, Select} from '@alifd/meet';
 import styles from './index.module.less';
@@ -148,14 +148,10 @@ function OrderAddress() {
         type="confirm"
         onClose={() => setDia(false)}
         onOk={() => {
-          navigate.push({
-            url: ''
-          })
+          naviTo('/pages/Orders/index', '/orders')
         }}
         onCancel={() => {
-          navigate.push({
-            url: ''
-          })
+          naviTo('/pages/Index/index', '/')
         }}
       />
 

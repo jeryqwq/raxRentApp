@@ -1,9 +1,65 @@
-import { createElement } from 'rax';
+import { createElement, useState } from 'rax';
 import styles from './index.module.less'
-import { Icon } from '@alifd/meet';
+import { ActionSheet, Dialog, Icon } from '@alifd/meet';
 import navigate from '@uni/navigate';
 import { isWeChatMiniProgram } from '@uni/env';
+import { myRequest, naviTo } from '@/utils';
+import { showToast } from '@uni/toast';
+let user
 function Menu({ index } : {index: number}) {
+  async function loadUser() {
+    const res = await myRequest({
+      url: '/sysuser/getUserInfo',
+      method: 'get'
+    })
+    user = res
+    return res
+  }
+  async function check(url,h5) {
+    const _user = user || await loadUser()
+    if(_user?.brand?.status === 1) {
+      naviTo(url, h5)
+    }else{
+      let states: any, authRes: any
+        const res = await myRequest( { url: '/sysOrgan/findMy', method: 'get', data: { type: 1 } })
+          states = res?.status
+          authRes = res
+          user = undefined
+          if(states === 0) {
+            showToast('认证中，请稍后')
+          }else if(states === -1){
+            showToast('认证失败，原因：' + authRes?.statusMsg + '  请重新提交')
+            naviTo('/pages/SalerAuth/indec?user=' + _user.user.id, '/salerAuth?user=' + _user.user.id)
+          }else if(states === 1){
+            showToast('您已认证，无需认证')
+          }else{
+            naviTo('/pages/SalerAuth/index?user=' + _user.user.id, '/salerAuth?user=' + _user.user.id)
+          }
+      }
+  }
+  async function checkBuy(url,h5) {
+    const _user = user || await loadUser()
+    console.log(_user, '-user')
+    if(_user?.construction?.status === 1) {
+      naviTo(url, h5)
+    }else{
+      let states: any, authRes: any
+        const res = await myRequest( { url: '/sysOrgan/findMy', method: 'get', data: { type: 2 } })
+          states = res?.status
+          authRes = res
+          user = undefined
+          if(states === 0) {
+            showToast('认证中，请稍后')
+          }else if(states === -1){
+            showToast('认证失败，原因：' + authRes?.statusMsg + '  请重新提交')
+            naviTo('/pages/BuyAuth/index?user=' + _user.user.id, '/buyAuth?user=' + _user.user.id)
+          }else if(states === 1){
+            showToast('您已认证，无需认证')
+          }else{
+            naviTo('/pages/BuyAuth/index?user=' + _user.user.id, '/buyAuth?user=' + _user.user.id)
+          }
+      }
+  }
   return (
     <div style={{position: 'relative', zIndex: 1}}>
     <div className={ styles['menu-wrap']}>
@@ -36,8 +92,40 @@ function Menu({ index } : {index: number}) {
         <div style={{color: index === 1 ?  '#105CCE' : '' }}>分类</div>
       </div>
       <div style={{height: '60px', position: 'relative', zIndex: 1}}>
- 
-        <div className='public'>
+        <div className='public' onClick={() => {
+          Dialog.alert({
+            centered: true,
+            content: <div style={{lineHieght: '40px', fontSize: '15px'}}>
+              <div  style={{display: 'flex', color: '#105CCE',
+              alignItems: 'center', justifyContent: 'center',
+              backgroundColor: '#E4F0FF',fontSize: '17px',
+              height: '50px',width: '540rpx'}}><img src='https://www.fjrongshengda.com/wxapp/wjj.png' style={{width: '40px', height: '40px'}}/>发布设备</div>
+              <div onClick={async () => {
+                check('/pages/Rent/index', 'rent')
+              }} style={{margin: '15px'}}>设备出租</div>
+              <div onClick={() => {
+                check('/pages/SallOld/index', 'sallOld')
+              }} style={{margin: '15px'}}>出售二手设备</div>
+              <div onClick={() => {
+                check('/pages/SallNew/index', 'sallNew')
+              }} style={{margin: '15px'}}>出售新机</div>
+              <div style={{display: 'flex', color: '#105CCE',
+              alignItems: 'center',justifyContent: 'center',
+              backgroundColor: '#E4F0FF',fontSize: '17px',
+              height: '50px',width: '540rpx'}}><img src='https://www.fjrongshengda.com/wxapp/paper.png' style={{width: '40px', height: '40px'}}/>发布需求</div>
+              <div onClick={() => {
+                checkBuy('/pages/ForRent/index', 'forRent')
+              }} style={{margin: '15px'}}>求租设备</div>
+              <div onClick={() => {
+                checkBuy('/pages/BuyOld/index', 'buyOld')
+              }} style={{margin: '15px'}}>求购二手</div>
+              <div onClick={() => {
+                checkBuy('/pages/BuyNew/index', 'buyNew')
+              }} style={{margin: '15px'}}>求购新机</div>
+            </div>,
+            footer: false
+          })
+        }}>
           <Icon size="s" type={'edit'} style={{marginTop: '7px'}} />
           <view >发布</view>
         </div>
