@@ -3,10 +3,12 @@ import styles from './index.module.less';
 import { Tab } from '@alifd/meet';
 import { myRequest } from '@/utils';
 import ScrollView from 'rax-scrollview';
+import { getSearchParams } from 'rax-app';
 
 function Orders() {
+  const { status: st } = getSearchParams()
   const [orders, setOrders] = useState<any[]>([])
-  const [status, setStatus] = useState<any>('1')
+  const [status, setStatus] = useState<any>(st)
   const [current, setCurrent] = useState(0)
   async function loadOrder(params, connect = false) {
     const conditions = [{ column: 'order_status', operator: 'eq', value: params.orderStatus}]

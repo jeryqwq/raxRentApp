@@ -127,13 +127,13 @@ function Rent() {
           <DatePicker name="productionDate" placeholder="请选择出厂日期" />
         </Form.Item>
         <Form.Item hasFeedback label="工作小时数" required requiredMessage="工作小时数不能为空">
-          <NumberPicker name="workTime" min={0}  defaultValue={0} />
+          <NumberPicker  name="workTime" min={0} inputStyle={{width: '300rpx'}} defaultValue={0} />
         </Form.Item>
         <Form.Item hasFeedback label="整机序列号" required requiredMessage="整机序列号不能为空">
           <Input outline={false} name="serialNumber" placeholder="请输入整机序列号" />
         </Form.Item>
         <Form.Item hasFeedback label="月租金" required requiredMessage="月租金不能为空">
-          <NumberPicker name="monthlyRent" min={0}  defaultValue={0} />
+          <NumberPicker  inputStyle={{width: '300rpx'}} name="monthlyRent" min={0}  defaultValue={0} />
         </Form.Item>
         <Form.Item hasFeedback label="详细说明" required requiredMessage="详细说明不能为空">
           <Input TextArea name="description" rows={5} placeholder="请对设备的技术参数、设备状况、提供的配套辅件、服务项目、服务商实力进行说明（限200字"/>

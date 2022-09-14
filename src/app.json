@@ -44,13 +44,13 @@
         "title": "商品检索"
       }
     },{
-      "path": "/PartSearch",
+      "path": "/partSearch",
       "source": "pages/PartSearch/index",
       "window": {
         "title": "检索"
       }
     },{
-      "path": "/rentDetail",
+      "path": "/rentdetail",
       "source": "pages/Rentdetail/index",
       "window": {
         "title": "详情"
@@ -62,10 +62,28 @@
         "title": "个人中心"
       }
     },{
+      "path": "/orders",
+      "source": "pages/orders/index",
+      "window": {
+        "title": "订单列表"
+      }
+    },{
       "path": "/commonLogin",
       "source": "pages/Login/commonLogin",
       "window": {
         "title": "用户登录"
+      }
+    },{
+      "path": "/repairList",
+      "source": "pages/repairList/index",
+      "window": {
+        "title": "维修记录"
+      }
+    },{
+      "path": "/message",
+      "source": "pages/message/index",
+      "window": {
+        "title": "我的消息"
       }
     },
     {
@@ -73,6 +91,59 @@
       "source": "pages/Login/registry",
       "window": {
         "title": "用户注册"
+      }
+    },
+    {
+      "path": "/rent",
+      "source": "pages/Rent/index",
+      "window": {
+        "title": "设备出租"
+      }
+    },
+    {
+      "path": "/sallOld",
+      "source": "pages/SallOld/index",
+      "window": {
+        "title": "出售二手设备"
+      }
+    },
+    {
+      "path": "/sallNew",
+      "source": "pages/SallNew/index",
+      "window": {
+        "title": "出售新机"
+      }
+    }, {
+      "path": "/forRent",
+      "source": "pages/ForRent/index",
+      "window": {
+        "title": "求租设备"
+      }
+    }, {
+      "path": "/buyNew",
+      "source": "pages/BuyNew/index",
+      "window": {
+        "title": "求购新机"
+      }
+    },{
+      "path": "/buyOld",
+      "source": "pages/BuyOld/index",
+      "window": {
+        "title": "求购二手"
+      }
+    },
+    {
+      "path": "salerAuth",
+      "source": "pages/SalerAuth/index",
+      "window": {
+        "title": "企业个人认证"
+      }
+    },
+    {
+      "path": "buyAuth",
+      "source": "pages/BuyAuth/index",
+      "window": {
+        "title": "施工单位认证"
       }
     }
   ],

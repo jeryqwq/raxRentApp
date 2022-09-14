@@ -3,9 +3,8 @@ import { getSearchParams } from 'rax-app';
 import styles from './index.module.less';
 import { Dialog, Picker, Icon } from '@alifd/meet';
 import ScrollView from 'rax-scrollview';
-import navigate from '@uni/navigate';
 import { navigationBar } from '@uni/apis';
-import { API_TYPES, CITYS, myRequest } from '@/utils';
+import { API_TYPES, CITYS, myRequest, naviTo } from '@/utils';
 const typeMap  = {
   'ALL': '全部设备',
   PART: '零件',
@@ -33,7 +32,8 @@ function CategoryCopy() {
     pages: 10,
     size: 12,
     isNew: type === 'OLD' ? 0 : type === 'NEW' ? 1 : undefined,
-    equipType: cateId
+    equipType: cateId,
+    partsType: type === 'PART' && name
   })
   const [list, setList] = useState([])
   navigationBar.setNavigationBarTitle({
@@ -56,9 +56,16 @@ function CategoryCopy() {
           method: 'get'
         })
         cacheMenu = [{ label: '全部', value: '全部', children: [{ label: '全部', value: '全部'}] }].concat(res.map(deep))
+        setCates(cacheMenu)
       }
     }else{
-      
+      const res = await myRequest({
+        url,
+        method: 'get'
+      })
+      cacheMenu = [{ label: '全部', value: '全部',}].concat(res.map(i => ({ label: i.name, value: i.code })))
+      setCates([cacheMenu])
+
     }
   }
   useEffect(() => {
@@ -85,6 +92,20 @@ function CategoryCopy() {
           "value": params.equipBrand
       })
     }
+    if(params.partsType) {
+      conditions.push({
+        "column": "parts_type",
+        "operator": "eq",
+        "value": params.partsType
+      })
+    }
+    if(params.partsBrand) {
+      conditions.push({
+        "column": "parts_brand",
+        "operator": "eq",
+        "value": params.partsBrand
+      })
+    }
       const res = await myRequest({
         url: apis[type],
         method: 'post',
@@ -99,11 +120,13 @@ function CategoryCopy() {
   useEffect(() => {
     if(type !== 'PART') {
       loadCate()
+    }else{
+      loadCate('/appdict/partsType')
     }
     (async () => {
       const res = await myRequest({
-        url: '/mallBrandInfo/all', 
-        method: 'post',
+        url: type === 'PART' ?'/appdict/partsBrand' : '/mallBrandInfo/all' , 
+        method: type === 'PART' ? 'get' :'post',
         data: {}
       })
       setBrands(res)
@@ -117,18 +140,25 @@ function CategoryCopy() {
     <div className={styles['wrap']}>
       <div className="search-wrap">
         <div className="item" onClick={() => {
-          setDia(true);
-          setCates([cacheMenu, cacheMenu[0].children])
+            setDia(true);
+          if(type === 'PART') {
+           setCates([cacheMenu])
+          }else{
+            setCates([cacheMenu, cacheMenu[0].children])
+          }
           curType = 'CATE'
           temp = []
-
-        }}>设备<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
+        }}>{ type === 'PART' ? '类型' : '设备' }<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item" onClick={() => {
           curType = 'BRAND'
-          setCates([[{label: '全部', value: '全部', children: [{label: '全部', value: '全部'}]}, ...brands.map(i => ({ label: i.brandName, value: i.brandName }))]])
+          if(type === 'PART') {
+            setCates([[{label: '全部', value: '全部'}, ...brands.map(i => ({ label:i.name, value: i.code }))]])
+          }else{
+            setCates([[{label: '全部', value: '全部', children: [{label: '全部', value: '全部'}]}, ...brands.map(i => ({ label: i.brandName, value: i.brandName }))]])
+          }
           setDia(true);
           temp = []
-        }}>品牌<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
+        }}>{ type === 'PART' ? '品名' : '品牌' }<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
         <div className="item"
          onClick={() => {
           curType = 'ADDRESS'
@@ -146,9 +176,8 @@ function CategoryCopy() {
       }}className={styles['list']} style={{height: `calc( 100vh - 33px )`}}>
        {
         list.map(i =>  <div className="item" onClick={() => {
-          navigate.push({
-            url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + (i.type || types[type === 'ALL'? 'NEW' : type])
-          })
+          const q = "?id=" + i.id + '&type=' + (i.type || types[type === 'ALL'? 'NEW' : type])
+          naviTo("/pages/Rentdetail/index" + q, "/rentDetail" + q)
         }}>
         <img style={{width: '230rpx', height: '199rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
         <div className="rg">
@@ -167,15 +196,21 @@ function CategoryCopy() {
           setParams({
             ...params,
             current: 1,
-            equipType: val
+            equipType: type === 'PART' ? undefined : val,
+            partsType: type === 'PART' && temp[0] === '全部' ? undefined : temp[0],
           })
         }else if(curType === 'BRAND') {
           const val = temp[0] === '全部' ? undefined : temp[0]
-          setParams({
+          let _params = {
             ...params,
             current: 1,
-            equipBrand: val,
-          })
+          }
+          if(type === 'PART' ) {
+            _params.partsBrand = temp[0] === '全部' ? undefined : temp[0]
+          }else{
+            _params.equipBrand = val
+          }
+          setParams(_params)
         }else if (curType === 'ADDRESS'){
           const val = temp[1] === '全部' ? temp[0] === '全部' ? undefined : temp[0] : temp[1]
           setParams({

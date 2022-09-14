@@ -130,7 +130,7 @@ function Rent() {
           <Input outline={false} name="serialNumber" placeholder="请输入整机序列号" />
         </Form.Item>
         <Form.Item hasFeedback label="出售价格" required requiredMessage="出售价格不能为空">
-          <NumberPicker name="salePrice" min={0}  defaultValue={0} />
+          <NumberPicker inputStyle={{width: '300rpx'}} name="salePrice" min={0}  defaultValue={0} />
         </Form.Item>
         <Form.Item hasFeedback label="详细说明" required requiredMessage="详细说明不能为空">
           <Input TextArea name="description" rows={5} placeholder="请对设备的技术参数、设备状况、提供的配套辅件、服务项目、服务商实力进行说明（限200字"/>
