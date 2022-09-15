@@ -6,7 +6,7 @@ function NewsItem({item}) {
   return (
     <div className={styles['wrap']} onClick={() => {
       const query = "?id=" + item.id + '&type=' + ('EquipmentSale')
-      naviTo('/pages/Rentdetail/index' + query, '/rentDetail' + query)
+      // naviTo('/pages/Rentdetail/index' + query, '/rentDetail' + query)
     }}>
       <div className="lf">
         <div className="txt">{item.title}</div>

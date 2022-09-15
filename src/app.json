@@ -14,6 +14,30 @@
         "title": "购物车"
       }
     },{
+      "path": "/findjob",
+      "source": "pages/Findjob/index",
+      "window": {
+        "title": "机手求职"
+      }
+    },{
+      "path": "/createRepair",
+      "source": "pages/CreateRepair/index",
+      "window": {
+        "title": "设备维护"
+      }
+    },{
+      "path": "/brands",
+      "source": "pages/Brands/index",
+      "window": {
+        "title": "品牌设备"
+      }
+    },{
+      "path": "/transport",
+      "source": "pages/Transport/index",
+      "window": {
+        "title": "物流运输"
+      }
+    },{
       "path": "/addressMan",
       "source": "pages/AddressMan/index",
       "window": {

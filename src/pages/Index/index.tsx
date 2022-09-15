@@ -12,6 +12,7 @@ import CourseItem from '@/components/CourseItem';
 import NewsItem from '@/components/NewsItem';
 import { myRequest } from '@/utils';
 import IsLogin from '@/components/isLogin';
+import { isWeChatMiniProgram } from '@uni/env';
 const menus = [
   {
     src: 'https://www.fjrongshengda.com/icons/menu1.png',
@@ -30,8 +31,6 @@ const menus = [
     title: '二手设备',
     url: '/pages/CateSearch/index?type=OLD',
     h5: '/cateSearch?type=OLD'
-
-
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu4.png',
@@ -41,19 +40,27 @@ const menus = [
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu5.png',
-    title: '机手求职'
+    title: '机手求职',
+    url: '/pages/Findjob/index',
+    h5: 'findjob'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu6.png',
-    title: '设备维修'
+    title: '设备维修',
+    url: '/pages/CreateRepair/index',
+    h5: 'createRepair'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu7.png',
-    title: '品牌设备'
+    title: '品牌设备',
+    url: '/pages/Brands/index',
+    h5: 'brands'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu8.png',
-    title: '物流运输'
+    title: '物流运输',
+    url: '/pages/Transport/index',
+    h5: 'transport'
   },
 
 ]
@@ -136,7 +143,7 @@ function Pages() {
               {
                 menus.map((i) =><div className="item" onClick={() => {
                   i.url && navigate.push({
-                    url: i.url
+                    url: isWeChatMiniProgram ? i.url : i.h5
                   })
                 }}>
                 <img src={i.src} />
@@ -157,7 +164,7 @@ function Pages() {
         </div>
         {/* 设备租赁 end */}
 
-        <Title title="品牌设备" path=''/>
+        <Title title="品牌设备" path={isWeChatMiniProgram ? '/pages/Brands/index' : '/brands'}/>
         <div className={styles['brands']}>
           {
            brands.map(i => <div className="item">
