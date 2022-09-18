@@ -3,18 +3,11 @@ import styles from './index.module.less'
 import { ActionSheet, Dialog, Icon } from '@alifd/meet';
 import navigate from '@uni/navigate';
 import { isWeChatMiniProgram } from '@uni/env';
-import { myRequest, naviTo } from '@/utils';
+import { loadUser, myRequest, naviTo } from '@/utils';
 import { showToast } from '@uni/toast';
 let user
 function Menu({ index } : {index: number}) {
-  async function loadUser() {
-    const res = await myRequest({
-      url: '/sysuser/getUserInfo',
-      method: 'get'
-    })
-    user = res
-    return res
-  }
+ 
   async function check(url,h5) {
     const _user = user || await loadUser()
     if(_user?.brand?.status === 1) {

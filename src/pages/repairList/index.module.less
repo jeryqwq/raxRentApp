@@ -2,7 +2,41 @@
 .wrap{
   height: 100%;
   background-color: #F3F3F3;
+  margin: 10px;
   :global{
-    
+      .item{
+        background-color: white;
+        font-size: 14px;
+        margin: 10px 0;
+        .tit{
+          display: flex;
+          justify-content: space-between;
+          height: 50px;
+          line-height: 50px;
+          border-bottom: solid 1px #E4E4E4;
+        }
+        .sitem{
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          .label{
+            color: #999999;
+          }
+        }
+      }
+      .foot{
+        display: flex;
+        justify-content: flex-end;
+        border-top: solid 1px #E4E4E4;
+        >.action{
+          width: 90px;
+          height: 30px;
+          border: 1px solid #D5D5D5;
+          opacity: 1;
+          border-radius: 15px;line-height: 30px;
+          text-align: center;
+          margin: 10px;
+        }
+      }
   }
 }

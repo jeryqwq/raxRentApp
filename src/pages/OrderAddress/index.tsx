@@ -18,7 +18,7 @@ function OrderAddress() {
   let allProdus:any[] = []
   console.log(prods)
   prods?.prods.forEach((j: any) => {
-    totalCount +=(j?.details?.length || 0)
+    totalCount +=j?.details?.map((i: any) => (i.productAmount) ).reduce((a: number,b: number) => a + b)
     allProdus.push(...j?.details);
     totalPrice += j?.details?.map((i: any) => (i.productAmount) * (i.price || i.nowPrice) ).reduce((a: number,b: number) => a + b)
   })

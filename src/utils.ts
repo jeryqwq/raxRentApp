@@ -12,7 +12,14 @@ export const getBrand = function () {
     })
 }
 
-export const  getUuid = function () {
+export const  loadUser = async function() {
+    const res = await myRequest({
+      url: '/sysuser/getUserInfo',
+      method: 'get'
+    })
+    return res
+  }
+  export const  getUuid = function () {
     let s:any[] = [];
     let hexDigits = "0123456789abcdef";
       for (let i = 0; i < 36; i++) {
@@ -86,7 +93,8 @@ export const API_TYPES = {
     PART: 'equipmentParts',
     RENT: 'equipmentLease',
     OLD: 'equipmentSale',
-    NEW: 'equipmentSale'
+    NEW: 'equipmentSale',
+    COURSE: 'trainingCourse'
   }
 export const TYPES_API = {
     equipmentParts: 'PART',

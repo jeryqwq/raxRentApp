@@ -48,19 +48,19 @@ const menus = [
     src: 'https://www.fjrongshengda.com/icons/menu6.png',
     title: '设备维修',
     url: '/pages/CreateRepair/index',
-    h5: 'createRepair'
+    h5: '/createRepair'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu7.png',
     title: '品牌设备',
     url: '/pages/Brands/index',
-    h5: 'brands'
+    h5: '/brands'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu8.png',
     title: '物流运输',
     url: '/pages/Transport/index',
-    h5: 'transport'
+    h5: '/transport'
   },
 
 ]
@@ -190,13 +190,17 @@ function Pages() {
           }
         </div>
 
-        <img src="https://www.fjrongshengda.com/wxapp/repairbg.png" style={{width: '700rpx', height: '300rpx', margin: '25rpx auto auto 25rpx'}}/>
+        <img onClick={() => {
+          navigate.push({
+            url: isWeChatMiniProgram ? '/pages/CreateRepair/index' : '/createRepair'
+          })
+        }} src="https://www.fjrongshengda.com/wxapp/repairbg.png" style={{width: '700rpx', height: '300rpx', margin: '25rpx auto auto 25rpx'}}/>
 
-        <Title title='培训课程' path=''/>
+        <Title title='培训课程' path={isWeChatMiniProgram ? '/pages/CourseList/index' : '/courseList'} />
         {
           course.map(i => <CourseItem item={i}/>)
         }
-        <Title title='行业动态' path=''/>
+        <Title title='行业动态' path={isWeChatMiniProgram ? '/pages/NewsList/index' : '/newsList'} />
         {
           news.map(i => <NewsItem item={i}/>)
         }

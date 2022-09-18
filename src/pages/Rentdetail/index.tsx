@@ -27,6 +27,10 @@ function Rentdetail() {
     detailType = 'PART'
     type = 'EquipmentParts'
   }
+  if(type === 'trainingCourse' || type === 'TrainingCourse') {
+    detailType = 'COURSE'
+    type = 'TrainingCourse'
+  }
   console.log(type)
   useEffect(() => {
     (async () => {
@@ -59,7 +63,6 @@ function Rentdetail() {
             {imags.map((item) => {
               return (
                 <Slider.Item key={item.path}>
-                  <View>
                     <img
                       src={'https://www.fjrongshengda.com/lease-center/' + item.path}
                       style={{
@@ -67,19 +70,18 @@ function Rentdetail() {
                         height: 372,
                       }}
                     />
-                  </View>
                 </Slider.Item>
               );
             })}
           </Slider>
       <div className="line1">
         <div className="lf">
-          <div className="tit">{detail.equipName}</div>
+          <div className="tit">{detail.equipName || detail.courseName}</div>
           <div className="price">{ detailType === 'RENT' ?  <span>
             租金：<span style={{color: '#FF0505', fontSize: '21px'}}>￥{detail.monthlyRent}元</span>/月</span> 
              : 
               <span>
-                单价：<span style={{color: '#FF0505', fontSize: '21px'}}>￥{detail.salePrice || detail.price }元</span> { detailType !== 'PART' ? '/台' : '/个' }
+                单价：<span style={{color: '#FF0505', fontSize: '21px'}}>￥{detail.salePrice || detail.price }元</span> { detailType !== 'PART' ? '' : '/个' }
               </span>
           }
              </div>
@@ -109,18 +111,20 @@ function Rentdetail() {
           <div className="item">
           最新更新时间:  <span className='val'>{detail.updateDate}</span>
           </div>
-          <div className="item">
-          设备品牌:  <span className='val'>{detail.equipBrand}</span>
-          </div>
-          <div className="item">
+          {
+            detailType !== 'COURSE' && <div className="item">
+            设备品牌:  <span className='val'>{detail.equipBrand}</span>
+            </div>
+          }
+          {detailType !== 'COURSE' &&<div className="item">
           出厂日期:  <span className='val'>{detail.productionDate}</span>
-          </div>
-          <div className="item">
+          </div>}
+          { detailType !== 'COURSE' &&<div className="item">
           整机序列号:  <span className='val'>{detail.serialNumber}</span>
-          </div>
-          <div className="item">
+          </div>}
+          { detailType !== 'COURSE' && <div className="item">
           设备型号:  <span className='val'>{detail.equipModel}</span>
-          </div>
+          </div>}
           {
             detailType === 'RENT' &&  <div className="item">
             工作小时数:  <span className='val'>{detail.workTime}</span>
@@ -131,7 +135,7 @@ function Rentdetail() {
           </div>
         </div>
         <div className="mtit">
-          产品详情
+          { detailType !== 'COURSE'? '产品详情': '课程详情' }
         </div>
         <div style={{fontSize: '12px', color: '#033333'}}>{detail.description}</div>
         {imags.map((item) => {
@@ -180,13 +184,13 @@ function Rentdetail() {
             })
            }}>
               <img  style={{width: '325rpx', height: '145px'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" />
-              <div className="tit">{i.equipName}</div>
+              <div className="tit">{i.equipName || i.courseName}</div>
               <div className="price">
               { detailType === 'RENT' ?  <span style={{fontSize: '12px'}}>
               <span style={{color: '#666'}}>租金：</span><span style={{color: '#FF0505'}}>￥{i.monthlyRent}元</span>/月</span> 
               : 
               <span style={{fontSize: '12px'}}>
-              单价：<span style={{color: '#FF0505'}}>￥{i.salePrice || i.price}元</span> { detailType !== 'PART' ? '/台' : '/个' }
+              单价：<span style={{color: '#FF0505'}}>￥{i.salePrice || i.price}元</span> { detailType !== 'PART' ? '' : '/个' }
             </span>
             }
                 <span style={{fontSize: '12px', color: '#999'}}>{i.releaseCityName}</span></div>

@@ -164,6 +164,19 @@
       }
     },
     {
+      "path": "newsList",
+      "source": "pages/NewsList/index",
+      "window": {
+        "title": "新闻列表"
+      }
+    },    {
+      "path": "courseList",
+      "source": "pages/CourseList/index",
+      "window": {
+        "title": "课程列表"
+      }
+    },
+    {
       "path": "buyAuth",
       "source": "pages/BuyAuth/index",
       "window": {

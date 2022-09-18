@@ -19,6 +19,10 @@ const apis = {
   OLD: '/equipmentSale/page',
   NEW: '/equipmentSale/page'
 }
+// const keywordMap = {
+//   'PART': 'parts_name',
+//   ''
+// }
 const types = API_TYPES
 let temp = [], curBrand, curAddress
 let curType
