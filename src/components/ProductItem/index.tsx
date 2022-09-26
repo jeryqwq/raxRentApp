@@ -4,7 +4,7 @@ import { naviTo } from '@/utils';
 function ProductItem({item}: {item: any}) {
   return (
     <div className={styles['product-wrap']} onClick={() => {
-      const q = "?id=" + item.id + '&type=' + ('EquipmentSale')
+      const q = "?id=" + item.id + '&type=' + (item.isNew === undefined ? 'equipmentLease' : 'equipmentSale')
       naviTo( "/pages/Rentdetail/index" + q, 'rentDetail' + q)
     }}>
         <img src={'https://www.fjrongshengda.com/lease-center/' + item.mainImgPath} alt="" />

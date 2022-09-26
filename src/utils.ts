@@ -39,13 +39,13 @@ export const naviTo = function (url, h5url) {
 export const myRequest: any = (params) => {
   return new Promise((resolve, rej) => {
     (async () => {
-      const code = getStorageSync({
-        key: 'token',
+      const code = !isWeChatMiniProgram ? localStorage.getItem('TK') : getStorageSync({
+        key: 'TK',
       })
       request({
         ...params,
         headers: {
-          Authorization: `bearer ${ code.data }`,
+          Authorization: `bearer ${ !isWeChatMiniProgram ? code : code.data }`,
         },
         url: 'https://www.fjrongshengda.com/lease-center/' + params.url,
         success: (res) => {
@@ -57,9 +57,7 @@ export const myRequest: any = (params) => {
               type: 'fail',
               duration: 1000,
             });
-            navigate.push({
-              url: '/pages/Login/index'
-            })
+            naviTo('/pages/Login/index', 'registry')
           } else {
             showToast({
               content: res.data.msg,

@@ -1,11 +1,14 @@
 import { createElement, useEffect, useState } from 'rax';
 import View from 'rax-view';
-import { getSearchParams } from 'rax-app';
+import { addNativeEventListener, getSearchParams, registerNativeEventListeners, removeNativeEventListener } from 'rax-app';
 import { Slider } from '@alifd/meet';
 import styles from './index.module.less';
 import { API_TYPES, getFiles, myRequest, setCommonData } from '@/utils';
 import { showToast } from '@uni/toast';
 import navigate from '@uni/navigate';
+import { isWeChatMiniProgram } from '@uni/env';
+import IsLogin from '@/components/isLogin';
+
 
 
 function Rentdetail() {
@@ -14,6 +17,19 @@ function Rentdetail() {
   const [imags, setImages] = useState([])
   const [detail, setDetail] = useState({})
   const [otherStores, setOhterStore] = useState<any[]>([])
+  const share = () => ({
+    title: '融勝达工程机械网',
+    query: {id, type, imageUrl: imags[0]},
+    path: `/pages/Rentdetail/index?id=${id}&type=${type}`
+  })
+  useEffect(() => {
+    addNativeEventListener('onShareAppMessage', share);
+    addNativeEventListener('onShareTimeline', share);
+    return () => {
+      removeNativeEventListener('onShareAppMessage', share);
+      removeNativeEventListener('onShareTimeline', share);
+    }
+  }, []);
   let detailType = '';
   if(type === 'equipmentLease' || type === 'EquipmentLease') {
     type = 'EquipmentLease'
@@ -245,8 +261,11 @@ function Rentdetail() {
           >立即订购</div>
         </div>
       </div>
+      <IsLogin />
     </div>
   );
 }
-
+if(isWeChatMiniProgram) {
+registerNativeEventListeners(Rentdetail, ['onShareAppMessage', 'onShareTimeline']);
+}
 export default Rentdetail;

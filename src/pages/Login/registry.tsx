@@ -5,6 +5,7 @@ import { myRequest } from '@/utils';
 import { getStorage, getStorageSync } from '@uni/storage';
 import { Form, Input, Radio, Switch, DatePicker, Checkbox, NumberPicker } from '@alifd/meet';
 import { showToast } from '@uni/toast';
+import { getSearchParams } from 'rax-app';
 const opts = {
   labelAlign: 'top',
   contentAlign: 'left',
@@ -13,13 +14,24 @@ const opts = {
   size: 'medium',
   isPreview: 0,
 }
+export const  nativeAppConfig = {
+  onLoad: function (options) {
+    console.log("index 生命周期 onload" + JSON.stringify(options))
+    //在此函数中获取扫描普通链接二维码参数
+    if(options.q){
+      let q = decodeURIComponent(options.q);
+      console.log("index 生命周期 onload url=" + q)
+    }
+ }
+};;
 function Login() {
   const form = useRef(null);
-
+  const { code } = getSearchParams()
+  console.log(getSearchParams(), '---code')
   return (
     <div className={styles.commonwrap}>
       <div className={styles['title']}>融勝达注册</div>
-      <Form ref={form} {...opts} scrollToFirstError onSubmit={async (values, errors) => {
+      <Form ref={form} defaultValue={{shareCode: code}} {...opts} scrollToFirstError onSubmit={async (values, errors) => {
         const openId =  getStorageSync({
           key: 'openid'
         })

@@ -2,9 +2,10 @@ import { createElement, useEffect, useState } from 'rax';
 import styles from './index.module.less';
 import { Badge, Avatar, Icon } from '@alifd/meet';
 import Menu from '@/components/Menu';
-import { myRequest, setCommonData } from '@/utils';
+import { myRequest, naviTo, setCommonData } from '@/utils';
 import { isWeChatMiniProgram } from '@uni/env';
 import { navigate } from '@uni/apis';
+
  const orderStatus = {
   1: '下单待支付',
    2:'已经支付',
@@ -52,6 +53,7 @@ function User() {
     setNums(temp);
   }
   const {user} = _user as any
+  console.log(user)
   return (
     <div className="content-wrap">
       <div className="content" style={{paddingBottom: 0}}>
@@ -65,7 +67,7 @@ function User() {
                 <img className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/server.png'/>
                 <img className='item' style={{ width: '22px', height: '22px' }} src='https://www.fjrongshengda.com/wxapp/chat.png'  onClick={() => {
                 navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/message/index' : 'message',
+                  url: isWeChatMiniProgram ? '/pages/message/index' : '#/message',
                   refresh: !isWeChatMiniProgram
                 })
               }}/>
@@ -82,7 +84,7 @@ function User() {
             <div className="more">
             我的订单<span className='tip' onClick={() => {
               navigate.push({
-                url: isWeChatMiniProgram ? '/pages/orders/index' : 'orders',
+                url: isWeChatMiniProgram ? '/pages/orders/index' : '#/orders',
                 refresh: !isWeChatMiniProgram
               })
             }}>查看更多</span>
@@ -90,7 +92,7 @@ function User() {
             <div className="items">
               <div className="item"onClick={() => {
                 navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/orders/index?status=1' : 'orders?status=1',
+                  url: isWeChatMiniProgram ? '/pages/orders/index?status=1' : '#/orders?status=1',
                   refresh: !isWeChatMiniProgram
                 })
               }}>
@@ -100,7 +102,7 @@ function User() {
                 <div>{orderStatus[1]}</div></div>
               <div className="item"onClick={() => {
                 navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/orders/index?status=2' : 'orders?status=2',
+                  url: isWeChatMiniProgram ? '/pages/orders/index?status=2' : '#/orders?status=2',
                   refresh: !isWeChatMiniProgram
                 })
               }}>
@@ -111,7 +113,7 @@ function User() {
               </div>
               <div className="item" onClick={() => {
                 navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/orders/index?status=3' : 'orders?status=3',
+                  url: isWeChatMiniProgram ? '/pages/orders/index?status=3' : '#/orders?status=3',
                   refresh: !isWeChatMiniProgram
                 })
               }}>
@@ -121,7 +123,7 @@ function User() {
                 <div>{orderStatus[3]}</div></div>
               <div className="item" onClick={() => {
                 navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/orders/index?status=10' : 'orders?status=10',
+                  url: isWeChatMiniProgram ? '/pages/orders/index?status=10' : '#/orders?status=10',
                   refresh: !isWeChatMiniProgram
                 })
               }}>
@@ -133,7 +135,7 @@ function User() {
           </div>
           <div className="line3" onClick={() => {
             navigate.push({
-              url: isWeChatMiniProgram ? '/pages/message/index' : 'message',
+              url: isWeChatMiniProgram ? '/pages/message/index' : '#/message',
               refresh: !isWeChatMiniProgram
             })
           }}>
@@ -141,10 +143,10 @@ function User() {
           </div>
 
           <div className="line2">
-            <div className="items">
+            <div className="items2">
               <div className="item sty2" onClick={() => {
                 navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/AddressMan/index?open=0' : 'addressMan?open=0',
+                  url: isWeChatMiniProgram ? '/pages/AddressMan/index?open=0' : '#/addressMan?open=0',
                   refresh: !isWeChatMiniProgram
                 })
               }}>
@@ -152,7 +154,7 @@ function User() {
                 常用地址</div>
               <div className="item sty2"  onClick={() => {
                 navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/repairList/index' : 'repairList',
+                  url: isWeChatMiniProgram ? '/pages/repairList/index' : '#/repairList',
                   refresh: !isWeChatMiniProgram
                 })
               }}>
@@ -161,8 +163,13 @@ function User() {
               </div>
               <div className="item sty2">
               <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/msg.png'}/>
-                
                 修改密码</div>
+                <div className="item sty2" onClick={() => {
+                  naviTo('/pages/WebView/index?url=https://www.fjrongshengda.com/h5app/#/share?code=' + user.shareCode, '/share?code=' + user.shareCode)
+                }}>
+                <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/msg.png'}/>
+                  分享
+                </div>
             </div>
           </div>
         </div>

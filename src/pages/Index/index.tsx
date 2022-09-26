@@ -18,49 +18,49 @@ const menus = [
     src: 'https://www.fjrongshengda.com/icons/menu1.png',
     title: '设备租赁',
     url: '/pages/CateSearch/index?type=RENT',
-    h5: '/cateSearch?type=RENT'
+    h5: '#/cateSearch?type=RENT'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu2.png',
     title: '新机出售',
     url: '/pages/CateSearch/index?type=NEW',
-    h5: '/cateSearch?type=NEW'
+    h5: '#/cateSearch?type=NEW'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu3.png',
     title: '二手设备',
     url: '/pages/CateSearch/index?type=OLD',
-    h5: '/cateSearch?type=OLD'
+    h5: '#/cateSearch?type=OLD'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu4.png',
     title: '配件商城',
     url: '/pages/CateSearch/index?type=PART',
-    h5: '/cateSearch?type=PART'
+    h5: '#/cateSearch?type=PART'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu5.png',
     title: '机手求职',
     url: '/pages/Findjob/index',
-    h5: 'findjob'
+    h5: '#/findjob'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu6.png',
     title: '设备维修',
     url: '/pages/CreateRepair/index',
-    h5: '/createRepair'
+    h5: '#/createRepair'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu7.png',
     title: '品牌设备',
     url: '/pages/Brands/index',
-    h5: '/brands'
+    h5: '#/brands'
   },
   {
     src: 'https://www.fjrongshengda.com/icons/menu8.png',
     title: '物流运输',
     url: '/pages/Transport/index',
-    h5: '/transport'
+    h5: '#/transport'
   },
 
 ]
@@ -153,7 +153,7 @@ function Pages() {
               
         </div>
         
-        <Title title='设备租赁' path='/pages/CateSearch/index?type=RENT'/>
+        <Title title='设备租赁' path={isWeChatMiniProgram ? '/pages/CateSearch/index?type=RENT' : '#/cateSearch?type=RENT'}/>
         {/* <TriggerList defaultVal='' onChange={(value) => {
         
         }} list={[{label: 'xxx', value: ''}, {label: 'xxxx2', value: '1'}]} /> */}
@@ -164,7 +164,7 @@ function Pages() {
         </div>
         {/* 设备租赁 end */}
 
-        <Title title="品牌设备" path={isWeChatMiniProgram ? '/pages/Brands/index' : '/brands'}/>
+        <Title title="品牌设备" path={isWeChatMiniProgram ? '/pages/Brands/index' : '#/brands'}/>
         <div className={styles['brands']}>
           {
            brands.map(i => <div className="item">
@@ -174,7 +174,7 @@ function Pages() {
           }
         </div>
 
-        <Title title='二手设备' path='/pages/CateSearch/index?type=OLD'/>
+        <Title title='二手设备' path={isWeChatMiniProgram ? '/pages/CateSearch/index?type=OLD' : '#/cateSearch?type=OLD'}/>
         <div className={styles['old-wrap']}>
           {
             sales.slice(0, 3).map(i => <div style={{width: '46%'}}>
@@ -183,24 +183,23 @@ function Pages() {
           }
         </div>
 
-        <Title title='零件配件' path='/pages/CateSearch/index?type=PART'/>
+        <Title title='零件配件' path={isWeChatMiniProgram ? '/pages/CateSearch/index?type=PART' : '#/cateSearch?type=PART'}/>
         <div className={styles['parts']}>
           {
            parts.map(i => <PartItem item={i}/>)
           }
         </div>
-
         <img onClick={() => {
           navigate.push({
-            url: isWeChatMiniProgram ? '/pages/CreateRepair/index' : '/createRepair'
+            url: isWeChatMiniProgram ? '/pages/CreateRepair/index' : '#/createRepair'
           })
         }} src="https://www.fjrongshengda.com/wxapp/repairbg.png" style={{width: '700rpx', height: '300rpx', margin: '25rpx auto auto 25rpx'}}/>
 
-        <Title title='培训课程' path={isWeChatMiniProgram ? '/pages/CourseList/index' : '/courseList'} />
+        <Title title='培训课程' path={isWeChatMiniProgram ? '/pages/CourseList/index' : '#/courseList'} />
         {
           course.map(i => <CourseItem item={i}/>)
         }
-        <Title title='行业动态' path={isWeChatMiniProgram ? '/pages/NewsList/index' : '/newsList'} />
+        <Title title='行业动态' path={isWeChatMiniProgram ? '/pages/NewsList/index' : '#/newsList'} />
         {
           news.map(i => <NewsItem item={i}/>)
         }

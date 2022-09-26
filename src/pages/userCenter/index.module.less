@@ -36,12 +36,12 @@
           color: #999999;
         }
       }
-      .items{
+      .items2{
         display: flex;
         justify-content: space-between;
         padding: 20px 0 10px 0;
+        flex-wrap: wrap;
         >.item{
-          flex: 1;
           font-size: 12px;
           text-align: center;
           &.sty2{
@@ -50,6 +50,25 @@
             font-size: 12px;
             display: flex;
             align-items: center;
+            width: 30%;
+          }
+        }
+      }
+      .items{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0 10px 0;
+        >.item{
+          font-size: 12px;
+          text-align: center;
+          flex: 1;
+          &.sty2{
+            white-space: nowrap;
+            color: #6D7077;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            width: 30%;
           }
           .mt-badge--auto {
             margin-right: 0;

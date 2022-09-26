@@ -47,7 +47,7 @@ function Login() {
             }
           })
           setStorage({
-            key: 'token',
+            key: 'TK',
             data: res
           })
           if(res) {

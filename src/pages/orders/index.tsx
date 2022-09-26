@@ -26,13 +26,12 @@ function Orders() {
     res.records && setOrders(connect ? orders.concat(res.records) :res.records )
   }
   useEffect(() => {
-    loadOrder({orderStatus:status })
+    loadOrder({orderStatus:status }, false)
   },[status])
   return (
     <div className={styles.wrap}>
       <Tab defaultActiveKey={1} activeKey={status} onChange={(key) => {
         setStatus(Number(key));
-        loadOrder({}, true)
       }}>
         <Tab.Item key={1} title="待确认">
         </Tab.Item>
@@ -61,7 +60,7 @@ function Orders() {
                       </div>
                       <div className="rg">
                         <div className="txt"> {j.productName}</div>
-                        <div className="price">¥{j.price || j.equipPrice}     <span className='num'>*{i.equipAmount}</span> </div>
+                        <div className="price">¥{j.price || j.equipPrice}     <span className='num'>*{j.equipAmount}</span> </div>
                       </div>
                   </div>)
                     }

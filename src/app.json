@@ -157,27 +157,35 @@
       }
     },
     {
-      "path": "salerAuth",
+      "path": "/salerAuth",
       "source": "pages/SalerAuth/index",
       "window": {
         "title": "企业个人认证"
       }
     },
     {
-      "path": "newsList",
+      "path": "/webView",
+      "source": "pages/WebView/index"
+    },
+    {
+      "path": "/share",
+      "source": "pages/Share/index"
+    },
+    {
+      "path": "/newsList",
       "source": "pages/NewsList/index",
       "window": {
         "title": "新闻列表"
       }
     },    {
-      "path": "courseList",
+      "path": "/courseList",
       "source": "pages/CourseList/index",
       "window": {
         "title": "课程列表"
       }
     },
     {
-      "path": "buyAuth",
+      "path": "/buyAuth",
       "source": "pages/BuyAuth/index",
       "window": {
         "title": "施工单位认证"

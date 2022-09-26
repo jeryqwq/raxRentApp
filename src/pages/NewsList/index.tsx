@@ -10,7 +10,7 @@ function CourseList() {
 
   const [params, setParams] = useState({
     current: 0,
-    size: 6
+    size: 12
   })
   async function loadData() {
     const res = await myRequest({
@@ -20,7 +20,7 @@ function CourseList() {
       },
       method: 'post'
     })
-    setList(res.records)
+    setList(list.concat(res.records))
   }
 
   useEffect(() => {
