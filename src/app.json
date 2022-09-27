@@ -172,10 +172,24 @@
       "source": "pages/Share/index"
     },
     {
+      "path": "/h5Login",
+      "source": "pages/Login/h5Login"
+    },
+    {
+      "path": "/changePwd",
+      "source": "pages/ChangePwd/index"
+    },
+    {
       "path": "/newsList",
       "source": "pages/NewsList/index",
       "window": {
         "title": "新闻列表"
+      }
+    },  {
+      "path": "/newsDetail",
+      "source": "pages/NewsDetail/index",
+      "window": {
+        "title": "新闻详情"
       }
     },    {
       "path": "/courseList",

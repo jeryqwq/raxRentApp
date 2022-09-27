@@ -1,6 +1,6 @@
 # rax-materials-basic-app
 
-<img src="./demo.jpeg">
+<img src="./demo.png">
 
 ## Getting Started
 

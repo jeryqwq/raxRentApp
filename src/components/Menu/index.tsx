@@ -119,8 +119,8 @@ function Menu({ index } : {index: number}) {
             footer: false
           })
         }}>
-          <Icon size="s" type={'edit'} style={{marginTop: '7px'}} />
-          <view >发布</view>
+          <Icon size="s" type={'edit'} style={{marginTop: '6px'}} />
+          <div >发布</div>
         </div>
       </div>
       <div className="item" onClick={() => {

@@ -5,8 +5,8 @@ import styles from './index.module.less';
 function NewsItem({item}) {
   return (
     <div className={styles['wrap']} onClick={() => {
-      const query = "?id=" + item.id + '&type=' + ('EquipmentSale')
-      // naviTo('/pages/NewsDetail/index' + query, '/newsDetail' + query)
+      const query = "?id=" + item.id 
+      naviTo('/pages/WebView/index?url=' + encodeURIComponent('https://www.fjrongshengda.com/h5app/#/newsDetail' + query), '/newsDetail' + query)
     }}>
       <div className="lf">
         <div className="txt">{item.title}</div>

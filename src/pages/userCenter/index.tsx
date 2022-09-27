@@ -53,7 +53,7 @@ function User() {
     setNums(temp);
   }
   const {user} = _user as any
-  console.log(user)
+  console.log(user.shareCode)
   return (
     <div className="content-wrap">
       <div className="content" style={{paddingBottom: 0}}>
@@ -161,13 +161,15 @@ function User() {
                 <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/repaire.png'}/>
                 维修订单
               </div>
-              <div className="item sty2">
+              <div className="item sty2" onClick={() => {
+                naviTo('/pages/ChangePwd/index', '/changePwd')
+              }}>
               <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/msg.png'}/>
                 修改密码</div>
                 <div className="item sty2" onClick={() => {
-                  naviTo('/pages/WebView/index?url=https://www.fjrongshengda.com/h5app/#/share?code=' + user.shareCode, '/share?code=' + user.shareCode)
+                  naviTo('/pages/WebView/index?url=' + encodeURIComponent(`https://www.fjrongshengda.com/h5app/#/share?code=${user.shareCode}`), '/share?code=' + user.shareCode)
                 }}>
-                <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/msg.png'}/>
+                <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/shar.png'}/>
                   分享
                 </div>
             </div>

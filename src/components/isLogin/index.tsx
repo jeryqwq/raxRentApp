@@ -1,22 +1,27 @@
 import { createElement, useEffect, useState } from 'rax';
-import { getStorage } from '@uni/storage';
+import { getStorage, getStorageSync } from '@uni/storage';
 import navigator from '@uni/navigate';
 import { naviTo } from '@/utils';
+import { isWeChatMiniProgram } from '@uni/env';
 
 function IsLogin() {
   const [islogin, setLogin] = useState<any>(false)
   useEffect(() => {
-    getStorage({
-      key: 'token',
-      success(res) {
-        setLogin({})
-      }
-    })
+    if(isWeChatMiniProgram) {
+      getStorage({
+        key: 'TK',
+        success(){
+          setLogin({})
+        }
+      })
+    }else{
+      localStorage.getItem('TK') && setLogin({})
+    }
   }, [])
   return (
     !islogin &&  <div
       onClick={() => {
-        naviTo('/pages/Login/index', '#/login')
+        naviTo('/pages/Login/index', '/h5Login')
       }}
       style={{position: 'fixed', top: '0', left: '0', width: '100vw', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', padding: '5px'}}>
       <span style={{ color: 'white', fontSize: '15px' }}>您暂未登录，点击跳转登录页</span>

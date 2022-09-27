@@ -2,58 +2,14 @@ import { createElement, useEffect } from 'rax';
 import styles from './index.module.less';
 import Image from 'rax-image';
 import { isWeChatMiniProgram } from '@uni/env';
-import { loadUser, myRequest } from '@/utils';
+import { wxAutoLogin } from '@/utils';
 import navigate from '@uni/navigate';
-import { setStorage, setStorageSync } from '@uni/storage';
-import { showToast } from '@uni/toast';
 
 function Login() {
   useEffect(() => {
     
     if (isWeChatMiniProgram) {
-      wx.login({
-        success: async (res) => {
-          if (res.code) {
-            const res2 = await myRequest({
-              data: { code: res.code },
-              mehtod: 'get',
-              url: 'login/getOpenId',
-            })
-            const { openid } = res2;
-            setStorage({
-              key: 'openid',
-              data: openid,
-            });
-            const res3 = await myRequest({
-              data: { openid },
-              url: '/login/openIdLogin',
-              method: 'get',
-            })
-            if (res3) {
-              setStorage({
-                key: 'TK',
-                data: res3,
-              });
-             
-              navigate.push({
-                url: '/pages/Index/index',
-              })
-              const res4 = await loadUser()
-              setStorageSync({
-                key: 'shareCode',
-                data: res4?.user?.shareCode
-              })
-              showToast({
-                content: '登录成功!',
-                type: 'success',
-                duration: 1000,
-              });
-            }
-          } else {
-            console.log('登录失败！' + res.errMsg)
-          }
-        },
-      })
+      wxAutoLogin()
     }
   }, [])
   return (
@@ -63,52 +19,7 @@ function Login() {
         <div
           onClick={() => {
             if (isWeChatMiniProgram) {
-              wx.login({
-                success: async (res) => {
-                  if (res.code) {
-                    const res2 = await myRequest({
-                      data: { code: res.code },
-                      mehtod: 'get',
-                      url: 'login/getOpenId',
-                    })
-                    const { openid } = res2;
-                    setStorage({
-                      key: 'openid',
-                      data: openid,
-                    });
-                    const res3 = await myRequest({
-                      data: { openid },
-                      url: '/login/openIdLogin',
-                      method: 'get',
-                    })
-                    if (res3) {
-                      setStorage({
-                        key: 'TK',
-                        data: res3,
-                      });
-                      navigate.push({
-                        url: '/pages/Index/index',
-                      })
-
-                      showToast({
-                        content: '登录成功',
-                        type: 'success',
-                        duration: 1000,
-                      });
-                    
-                      const res4 = await loadUser()
-                      setStorageSync({
-                        key: 'shareCode',
-                        data: res4?.user?.shareCode
-                      })
-                    }else{
-
-                    }
-                  } else {
-                    console.log('登录失败！' + res.errMsg)
-                  }
-                },
-              })
+              wxAutoLogin()
             }
           }}
           className={'login'}

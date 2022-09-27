@@ -51,16 +51,12 @@ function OrderAddress() {
               </div>
               <div className="rg">
                 <Icon type='arrow-right'onClick={() => {
-              navigate.push({
-                url: '/pages/AddressMan/index'
-              })
+              naviTo('/pages/AddressMan/index', '#/addressMan')
             }} style={{color: '#999999'}}/>
               </div>
             </div> : <span 
             onClick={() => {
-              navigate.push({
-                url: '/pages/AddressMan/index'
-              })
+              naviTo('/pages/AddressMan/index', '#/addressMan')
             }}
             style={{ fontSize: '20px', color: '#105CCE', textAlign: 'center' }}>请选择收货地址</span>
             }
@@ -148,10 +144,10 @@ function OrderAddress() {
         type="confirm"
         onClose={() => setDia(false)}
         onOk={() => {
-          naviTo('/pages/Orders/index', '/orders')
+          naviTo('/pages/Orders/index', '#/orders')
         }}
         onCancel={() => {
-          naviTo('/pages/Index/index', '/')
+          naviTo('/pages/Index/index', '#/')
         }}
       />
 

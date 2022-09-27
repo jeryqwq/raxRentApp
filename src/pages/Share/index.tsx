@@ -6,11 +6,10 @@ function Share() {
   let { code } = getSearchParams()
   let [base64, setBase64] = useState('')
   useEffect(() => {
-    QRCode.toDataURL(`https://www.fjrongshengda.com/invite?code=${code}`, function (err, url) {
+    QRCode.toDataURL(`https://www.fjrongshengda.com/h5app/#/share?code=${code}`, function (err, url) {
       setBase64(url)
     })
   })
-
   return (
     <div className={styles['wrap']} style={{ textAlign: 'center' }}>
       <div className="tit">推荐好友领福利</div>

@@ -3,7 +3,7 @@ import View from 'rax-view';
 import { addNativeEventListener, getSearchParams, registerNativeEventListeners, removeNativeEventListener } from 'rax-app';
 import { Slider } from '@alifd/meet';
 import styles from './index.module.less';
-import { API_TYPES, getFiles, myRequest, setCommonData } from '@/utils';
+import { API_TYPES, getFiles, myRequest, naviTo, setCommonData } from '@/utils';
 import { showToast } from '@uni/toast';
 import navigate from '@uni/navigate';
 import { isWeChatMiniProgram } from '@uni/env';
@@ -195,9 +195,8 @@ function Rentdetail() {
         <div className='list-wrap'> 
           {
            otherStores.map(i => <div className='item' onClick={() => {
-            navigate.push({
-              url: "/pages/Rentdetail/index?id=" + i.id + '&type=' + type
-            })
+            const query = "?id=" + i.id + '&type=' + type
+            naviTo("/pages/Rentdetail/index" + query, '/rentdetail' + query )
            }}>
               <img  style={{width: '325rpx', height: '145px'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" />
               <div className="tit">{i.equipName || i.courseName}</div>
@@ -254,9 +253,7 @@ function Rentdetail() {
                   ]
                 }
               )
-              navigate.push({
-                url: '/pages/OrderAddress/index',
-              })
+              naviTo('/pages/OrderAddress/index', '#/roderAddress')
             }}
           >立即订购</div>
         </div>

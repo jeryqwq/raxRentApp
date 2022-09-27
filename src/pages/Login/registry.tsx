@@ -1,10 +1,11 @@
-import { createElement, useRef, useState } from 'rax';
+import { createElement, useEffect, useRef, useState } from 'rax';
 import styles from './index.module.less';
 import navigate from '@uni/navigate';
-import { myRequest } from '@/utils';
+import { myRequest, wxAutoLogin } from '@/utils';
 import { getStorage, getStorageSync } from '@uni/storage';
 import { Form, Input, Radio, Switch, DatePicker, Checkbox, NumberPicker } from '@alifd/meet';
 import { showToast } from '@uni/toast';
+import { isWeChatMiniProgram } from '@uni/env';
 import { getSearchParams } from 'rax-app';
 const opts = {
   labelAlign: 'top',
@@ -14,20 +15,19 @@ const opts = {
   size: 'medium',
   isPreview: 0,
 }
-export const  nativeAppConfig = {
-  onLoad: function (options) {
-    console.log("index 生命周期 onload" + JSON.stringify(options))
-    //在此函数中获取扫描普通链接二维码参数
-    if(options.q){
-      let q = decodeURIComponent(options.q);
-      console.log("index 生命周期 onload url=" + q)
-    }
- }
-};;
+
 function Login() {
   const form = useRef(null);
-  const { code } = getSearchParams()
-  console.log(getSearchParams(), '---code')
+  let { code, q } = getSearchParams()
+  if(q) {
+    code = decodeURIComponent(q).split('code=')[1]
+  }
+  useEffect(() => {
+    if (isWeChatMiniProgram) {
+      wxAutoLogin()
+    }
+  }, [])
+  console.log(code, '---code')
   return (
     <div className={styles.commonwrap}>
       <div className={styles['title']}>融勝达注册</div>
