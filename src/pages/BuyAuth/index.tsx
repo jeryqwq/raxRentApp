@@ -94,10 +94,10 @@ function Rent() {
         <Form.Item hasFeedback label="联系电话"  required requiredMessage="手机号码不能为空">
           <Input outline={false}  name="callPhone" placeholder="请输入手机号码" />
         </Form.Item>
-        <Form.Item hasFeedback label="企业名称" required >
+        <Form.Item hasFeedback label="企业名称"  >
           <Input outline={false} name="name" placeholder="请输入企业名称" />
         </Form.Item>
-        <Form.Item hasFeedback label="统一社会信用代码"  required requiredMessage="统一社会信用代码不能为空">
+        <Form.Item hasFeedback label="统一社会信用代码"   requiredMessage="统一社会信用代码不能为空">
           <Input outline={false}  name="compCode" placeholder="请输入统一社会信用代码" />
         </Form.Item>
        <Form.Item label="企业营业执照" >
@@ -125,13 +125,13 @@ function Rent() {
        <div style={{fontSize: '18px', margin: '10px'}}>
           法人信息
         </div>
-        <Form.Item hasFeedback label="法人姓名" required >
+        <Form.Item hasFeedback label="法人姓名"  >
           <Input outline={false} name="legalUser" placeholder="请输入法人姓名" />
         </Form.Item>
-        <Form.Item hasFeedback label="法人身份证号码"  required requiredMessage="法人身份证号码不能为空">
+        <Form.Item hasFeedback label="法人身份证号码"   requiredMessage="法人身份证号码不能为空">
           <Input outline={false}  name="legalIdCard" placeholder="请输入法人身份证号码" />
         </Form.Item>
-        <Form.Item hasFeedback label="身份证正面" required >
+        <Form.Item hasFeedback label="身份证正面"  >
         <UploadField
             limit={1}
             formatter={(response, file) => {
@@ -155,7 +155,7 @@ function Rent() {
             onError={(item, value) => console.log('error', item)}
           />
         </Form.Item>
-        <Form.Item hasFeedback label="身份证反面" required >
+        <Form.Item hasFeedback label="身份证反面"  >
           <UploadField
               limit={1}
               formatter={(response, file) => {
@@ -183,7 +183,7 @@ function Rent() {
         <div style={{fontSize: '18px', margin: '10px'}}>
         其他资质材料
         </div>
-        <Form.Item hasFeedback label="其他材料扫描件（最多6张）" required >
+        <Form.Item hasFeedback label="其他材料扫描件（最多6张）"  >
           <UploadField
               limit={6}
               onChange={(items) => {

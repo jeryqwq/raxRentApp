@@ -32,6 +32,12 @@
         "title": "品牌设备"
       }
     },{
+      "path": "/findPwd",
+      "source": "pages/FindPwd/index",
+      "window": {
+        "title": "找回密码"
+      }
+    },{
       "path": "/transport",
       "source": "pages/Transport/index",
       "window": {

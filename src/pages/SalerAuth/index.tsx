@@ -1,4 +1,4 @@
-import { CITYS, getBrand, getUuid, myRequest, naviTo } from '@/utils';
+import { CITYS, getBrand, getUuid, loadUser, myRequest, naviTo } from '@/utils';
 import { CascaderSelect, DatePicker, Form, Input, NumberPicker, Select, UploadField } from '@alifd/meet';
 import { FormComponent } from '@alifd/meet/types/form';
 import { showToast } from '@uni/toast';
@@ -29,6 +29,7 @@ function Rent() {
   const [cardUrl2fileList, setFileList2] = useState<any[]>([])
   const [otherfileList, setOthers] = useState<any[]>([])
   const {user: userId} = getSearchParams()
+  const [user, setUser] = useState({})
   const ref = useRef<FormComponent>()
   console.log(userId)
   useEffect(() => {
@@ -56,6 +57,10 @@ function Rent() {
           }
        })()
     }, 0);
+    (async () => {
+      const res = await loadUser()
+      setUser(res)
+    })()
   }, [])
   return (
     <div>
@@ -87,16 +92,16 @@ function Rent() {
         <div style={{fontSize: '18px', margin: '10px'}}>
           企业信息
         </div>
-        <Form.Item hasFeedback label="请输入联系人" required >
+        <Form.Item hasFeedback label="请输入联系人"  >
           <Input outline={false} name="callUser" placeholder="请输入联系人" />
         </Form.Item>
-        <Form.Item hasFeedback label="联系电话"  required requiredMessage="手机号码不能为空">
+        <Form.Item hasFeedback label="联系电话"   requiredMessage="手机号码不能为空">
           <Input outline={false}  name="callPhone" placeholder="请输入手机号码" />
         </Form.Item>
-        <Form.Item hasFeedback label="企业名称" required >
+        <Form.Item hasFeedback label="企业名称"  >
           <Input outline={false} name="name" placeholder="请输入企业名称" />
         </Form.Item>
-        <Form.Item hasFeedback label="统一社会信用代码"  required requiredMessage="统一社会信用代码不能为空">
+        <Form.Item hasFeedback label="统一社会信用代码" required={user.brand}  requiredMessage="统一社会信用代码不能为空">
           <Input outline={false}  name="compCode" placeholder="请输入统一社会信用代码" />
         </Form.Item>
        <Form.Item label="企业营业执照" >
@@ -123,13 +128,13 @@ function Rent() {
        <div style={{fontSize: '18px', margin: '10px'}}>
           个人信息
         </div>
-        <Form.Item hasFeedback label="个人姓名" required >
+        <Form.Item hasFeedback label="个人姓名"  >
           <Input outline={false} name="legalUser" placeholder="请输入个人姓名" />
         </Form.Item>
-        <Form.Item hasFeedback label="个人身份证号码"  required requiredMessage="个人身份证号码不能为空">
+        <Form.Item hasFeedback label="个人身份证号码" required={!user.brand}  requiredMessage="个人身份证号码不能为空">
           <Input outline={false}  name="legalIdCard" placeholder="请输入个人身份证号码" />
         </Form.Item>
-        <Form.Item hasFeedback label="身份证正面" required >
+        <Form.Item hasFeedback label="身份证正面"  >
         <UploadField
             limit={1}
             formatter={(response, file) => {
@@ -153,7 +158,7 @@ function Rent() {
             onError={(item, value) => console.log('error', item)}
           />
         </Form.Item>
-        <Form.Item hasFeedback label="身份证反面" required >
+        <Form.Item hasFeedback label="身份证反面"  >
           <UploadField
               limit={1}
               formatter={(response, file) => {
@@ -181,7 +186,7 @@ function Rent() {
         <div style={{fontSize: '18px', margin: '10px'}}>
         其他资质材料
         </div>
-        <Form.Item hasFeedback label="其他材料扫描件（最多6张）" required >
+        <Form.Item hasFeedback label="其他材料扫描件（最多6张）"  >
         <UploadField
               limit={6}
               onChange={(items) => {

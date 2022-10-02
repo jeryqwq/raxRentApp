@@ -41,7 +41,7 @@ function Login() {
               url: '/login/register',
               data: {
                 ...values,
-                openid: openId.data,
+                openid: openId?.data,
                 type: 1
               },
               method: 'post',

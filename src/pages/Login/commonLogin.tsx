@@ -2,7 +2,7 @@ import { createElement, useState } from 'rax';
 import { Input, Icon } from '@alifd/meet';
 import styles from './index.module.less';
 import navigate from '@uni/navigate';
-import { myRequest } from '@/utils';
+import { myRequest, naviTo } from '@/utils';
 import { getStorageSync, setStorage } from '@uni/storage';
 import { showToast } from '@uni/toast';
 
@@ -59,14 +59,22 @@ function Login() {
       >
         登录
       </div>
-      <div className="tip">还没有账号？<span
+      <div className="tip">
+        <span>还没有账号？<span
       style={{ color: '#294A99' }}
       onClick={() => {
         navigate.push({
           url: '/pages/Login/registry'
         })
       }}
-      >去注册</span></div>
+      >去注册</span></span>
+      <span
+      style={{ color: '#294A99' }}
+      onClick={() => {
+        naviTo('/pages/FindPwd/registry', '/findPwd')
+      }}
+      >找回密码</span>
+      </div>
     </div>
   );
 }

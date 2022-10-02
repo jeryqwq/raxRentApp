@@ -4,7 +4,7 @@ import { getStorageSync, setStorage, setStorageSync } from '@uni/storage';
 import navigate from '@uni/navigate';
 import { isWeChatMiniProgram } from '@uni/env';
 
-export const wxAutoLogin = function () {
+export const wxAutoLogin = function (isnavi = true) {
     wx.login({
         success: async (res) => {
           if (res.code) {
@@ -29,7 +29,7 @@ export const wxAutoLogin = function () {
                 data: res3,
               });
              
-              navigate.push({
+              isnavi && navigate.push({
                 url: '/pages/Index/index',
               })
               const res4 = await loadUser()

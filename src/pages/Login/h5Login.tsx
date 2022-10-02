@@ -58,12 +58,22 @@ function Login() {
       >
         登录
       </div>
-      <div className="tip">还没有账号？<span
+      <div className="tip">
+        <span>
+        还没有账号？<span
       style={{ color: '#294A99' }}
       onClick={() => {
         naviTo('/pages/Login/registry', '/registry')
       }}
-      >去注册</span></div>
+      >去注册</span>
+        </span>
+       <span
+        style={{ color: '#294A99' }}
+        onClick={() => {
+          naviTo('/pages/FindPwd/registry', '/findPwd')
+        }}
+        >找回密码</span>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { createElement, useEffect, useState } from 'rax';
 import { getStorage, getStorageSync } from '@uni/storage';
 import navigator from '@uni/navigate';
-import { naviTo } from '@/utils';
+import { naviTo, wxAutoLogin } from '@/utils';
 import { isWeChatMiniProgram } from '@uni/env';
 
 function IsLogin() {
@@ -14,6 +14,7 @@ function IsLogin() {
           setLogin({})
         }
       })
+      wxAutoLogin(false)
     }else{
       localStorage.getItem('TK') && setLogin({})
     }
