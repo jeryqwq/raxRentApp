@@ -5,6 +5,7 @@ import Menu from '@/components/Menu';
 import { myRequest, naviTo, setCommonData } from '@/utils';
 import { isWeChatMiniProgram } from '@uni/env';
 import { navigate } from '@uni/apis';
+import { List, Checkbox, Switch } from '@alifd/meet';
 
  const orderStatus = {
   1: '下单待支付',
@@ -173,6 +174,25 @@ function User() {
                   分享
                 </div>
             </div>
+          </div>
+
+          <div className="line2">
+              <div className="item3">
+                <span>平台规则</span>
+                <span className='in-arr'>{'>'}</span>
+              </div>
+              <div className="item3">
+                <span>用户协议</span>
+                <span className='in-arr'>{'>'}</span>
+              </div>
+              <div className="item3">
+                <span>服务保障</span>
+                <span className='in-arr'>{'>'}</span>
+              </div>
+              <div className="item3">
+                <span>服务规则</span>
+                <span className='in-arr'>{'>'}</span>
+              </div>
           </div>
         </div>
       </div>

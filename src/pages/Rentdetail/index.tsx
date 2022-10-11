@@ -18,7 +18,7 @@ function Rentdetail() {
   const [detail, setDetail] = useState({})
   const [otherStores, setOhterStore] = useState<any[]>([])
   const share = () => ({
-    title: '融勝达工程机械网',
+    title: '融胜达工程机械网',
     query: {id, type, imageUrl: imags[0]},
     path: `/pages/Rentdetail/index?id=${id}&type=${type}`
   })

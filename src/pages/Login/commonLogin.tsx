@@ -11,7 +11,7 @@ function Login() {
   const [pwd, setPwd] = useState('')
   return (
     <div className={styles.commonwrap}>
-      <div className={styles['title']}>登录融勝达</div>
+      <div className={styles['title']}>登录融胜达</div>
       <div className="label">手机号</div>
       <div style={{ margin: '0 10px' }}><Input placeholder="用户名" highlightable onChange={setName} /></div>
       <div className="label">登录密码</div>

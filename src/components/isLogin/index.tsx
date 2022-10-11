@@ -14,7 +14,7 @@ function IsLogin() {
           setLogin({})
         }
       })
-      wxAutoLogin(false)
+      // wxAutoLogin(false)
     }else{
       localStorage.getItem('TK') && setLogin({})
     }

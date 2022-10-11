@@ -39,7 +39,7 @@ function Login() {
         </div>
       </div>
       <div style={{ fontSize: '14px', color: '#999', textAlign: 'center', marginTop: '30rpx' }}>
-        <div>登录代表您同意融勝达的</div>
+        <div>登录代表您同意融胜达的</div>
       <div style={{color: "#294A99"}}>用户服务协议、隐私政策</div>
       </div>
     </div>

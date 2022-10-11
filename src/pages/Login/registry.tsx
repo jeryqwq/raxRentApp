@@ -30,7 +30,7 @@ function Login() {
   console.log(code, '---code')
   return (
     <div className={styles.commonwrap}>
-      <div className={styles['title']}>融勝达注册</div>
+      <div className={styles['title']}>融胜达注册</div>
       <Form ref={form} defaultValue={{shareCode: code}} {...opts} scrollToFirstError onSubmit={async (values, errors) => {
         const openId =  getStorageSync({
           key: 'openid'

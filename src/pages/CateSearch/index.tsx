@@ -1,7 +1,7 @@
 import { createElement, useEffect, useState } from 'rax';
 import { getSearchParams } from 'rax-app';
 import styles from './index.module.less';
-import { Dialog, Picker, Icon } from '@alifd/meet';
+import { Dialog, Picker, Icon, Search } from '@alifd/meet';
 import ScrollView from 'rax-scrollview';
 import { navigationBar } from '@uni/apis';
 import { API_TYPES, CITYS, myRequest, naviTo } from '@/utils';
@@ -19,12 +19,9 @@ const apis = {
   OLD: '/equipmentSale/page',
   NEW: '/equipmentSale/page'
 }
-// const keywordMap = {
-//   'PART': 'parts_name',
-//   ''
-// }
+
 const types = API_TYPES
-let temp = [], curBrand, curAddress
+let temp = []
 let curType
 let cacheMenu
 function CategoryCopy() {
@@ -35,6 +32,7 @@ function CategoryCopy() {
     current: 1,
     pages: 10,
     size: 12,
+    searchName: '',
     isNew: type === 'OLD' ? 0 : type === 'NEW' ? 1 : undefined,
     equipType: cateId,
     partsType: type === 'PART' && name
@@ -69,18 +67,16 @@ function CategoryCopy() {
       })
       cacheMenu = [{ label: '全部', value: '全部',}].concat(res.map(i => ({ label: i.name, value: i.code })))
       setCates([cacheMenu])
-
     }
   }
-  useEffect(() => {
-    (async () => {
-      let conditions = []
-    if(params.isNew) {
-      conditions.push( {
-        "column": "is_new",
-        "operator": "eq",
-        "value": params.isNew
-    })
+  async function queryList (searchName, isReset = false) {
+    let conditions = []
+      if(params.isNew) {
+        conditions.push( {
+          "column": "is_new",
+          "operator": "eq",
+          "value": params.isNew
+      })
     }
     if(params.releaseCityName) {
       conditions.push({
@@ -103,6 +99,13 @@ function CategoryCopy() {
         "value": params.partsType
       })
     }
+    if(searchName) {
+      conditions.push({
+        column: 'equip_name',
+        operator: 'like',
+        value: searchName
+      })
+    }
     if(params.partsBrand) {
       conditions.push({
         "column": "parts_brand",
@@ -110,16 +113,22 @@ function CategoryCopy() {
         "value": params.partsBrand
       })
     }
+    if(!apis[type]) {
+      return
+    }
       const res = await myRequest({
         url: apis[type],
         method: 'post',
         data: {
           ...params,
-          conditions
+          conditions,
         }
       })
-      setList(list.concat(res.records || []))
-    })()
+      isReset ? setList(res.records || []) : setList(list.concat(res.records || []))
+    
+  }
+  useEffect(() => {
+    queryList('')
   }, [params])
   useEffect(() => {
     if(type !== 'PART') {
@@ -172,6 +181,19 @@ function CategoryCopy() {
         }}
         >地区<Icon type="arrow-down" style={{fontSize: '13px'}}/></div>
       </div>
+      <Search
+        hasClear
+        hasCancel
+        onSearch={(val) =>{
+          queryList(val, true)
+        }}
+        onCancel={() => {
+          queryList('', true)
+        }}
+        onClear={() => {
+          queryList('', true)
+        }}
+      />
       <ScrollView  onEndReached={() => {
         setParams({
           ...params,

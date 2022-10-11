@@ -13,12 +13,12 @@ function Cart() {
   const [products, setProduct] = useState([])
   const [isAllChoose, setIsAll] = useState(false)
   let chooseAll = function(e: any){
-    if(e) {
-    setChoose(products)
-    setIsAll(true)
+    if(!isAllChoose) {
+      setChoose(products)
+      setIsAll(true)
     }else{
-    setChoose([])
-    setIsAll(false)
+      setChoose([])
+      setIsAll(false)
     }
   }
   useEffect(() => {
