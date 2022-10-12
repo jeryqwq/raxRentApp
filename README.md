@@ -1,4 +1,4 @@
-# rax-materials-basic-app
+# rax App
 
 <img src="./demo.png">
 
