@@ -1,5 +1,5 @@
 import { createElement, useState } from 'rax';
-import { Input, Icon } from '@alifd/meet';
+import { Input, Icon, Radio } from '@alifd/meet';
 import styles from './index.module.less';
 import navigate from '@uni/navigate';
 import { myRequest, naviTo } from '@/utils';
@@ -11,10 +11,30 @@ function Login() {
   const [pwd, setPwd] = useState('')
   const [vcode, setCcode] = useState('')
   const [uuid, setUuid] = useState(Math.random() * 99999 + "" + +new Date())
+  const [userType, setType] = useState(1)
 
   return (
     <div className={styles.commonwrap}>
-      <div className={styles['title']}>登录融胜达</div>
+      <div className={styles['title']}>登录融胜达工程机械网</div>
+      <Radio.Group
+          size="large"
+          direction="hoz"
+          style={{margin: '10px'}}
+          value={userType}
+          onChange={(val) => {
+            setType(val)
+          }}
+          dataSource={[
+            {
+              label: '个人登录',
+              value: 1,
+            },
+            {
+              label: '企业登录',
+              value: 2,
+            },
+          ]}
+        />
       <div className="label">手机号</div>
       <div style={{ margin: '0 10px' }}><Input placeholder="用户名" highlightable onChange={setName} /></div>
       <div className="label">登录密码</div>
@@ -45,7 +65,7 @@ function Login() {
               username: name,
               vcode,
               codeNum: uuid,
-              userType:  1 
+              userType:  userType
             }
           })
           localStorage.setItem('TK', res)

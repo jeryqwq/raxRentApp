@@ -7,7 +7,6 @@ import navigate from '@uni/navigate';
 
 function Login() {
   useEffect(() => {
-    
     if (isWeChatMiniProgram) {
       wxAutoLogin()
     }

@@ -1,6 +1,6 @@
 import { createElement, useEffect, useState } from 'rax';
 import styles from './index.module.less';
-import { Badge, Avatar, Icon } from '@alifd/meet';
+import { Badge, Avatar, Icon, Dialog } from '@alifd/meet';
 import Menu from '@/components/Menu';
 import { myRequest, naviTo, setCommonData } from '@/utils';
 import { isWeChatMiniProgram } from '@uni/env';
@@ -55,6 +55,24 @@ function User() {
   }
   const {user} = _user as any
   console.log(user.shareCode)
+   async function renderHtml (name: string) {
+    const res =  await myRequest({
+      url: '/appdict/param/' + name,
+      method: 'get'
+     })
+     console.log(res, '---render')
+     if(res.msg.startsWith('http')) {
+      if(isWeChatMiniProgram) {
+        naviTo('/pages/WebView/index?url=' + encodeURIComponent(res.msg), res.msg)
+      }
+     }else{
+        Dialog.show({
+          content: isWeChatMiniProgram ? <rich-text nodes={res.msg}>
+          </rich-text> : <div dangerouslySetInnerHTML={{__html: res.msg}}></div>
+        })
+    
+     }
+   }
   return (
     <div className="content-wrap">
       <div className="content" style={{paddingBottom: 0}}>
@@ -177,19 +195,39 @@ function User() {
           </div>
 
           <div className="line2">
-              <div className="item3">
+              <div className="item3" 
+                onClick={() => {
+                  if(isWeChatMiniProgram) {
+                    wx.navigateToMiniProgram({
+                      appId: 'wx17130096b45c3e73'
+                    })
+                  }
+                }}
+              >
+                <span>进销存小程序</span>
+                <span className='in-arr'>{'>'}</span>
+              </div>
+              <div className="item3" onClick={() => {
+                renderHtml('平台规则')
+              }}>
                 <span>平台规则</span>
                 <span className='in-arr'>{'>'}</span>
               </div>
-              <div className="item3">
+              <div className="item3"onClick={() => {
+                renderHtml('用户协议')
+              }}>
                 <span>用户协议</span>
                 <span className='in-arr'>{'>'}</span>
               </div>
-              <div className="item3">
+              <div className="item3"onClick={() => {
+                renderHtml('服务保障')
+              }}>
                 <span>服务保障</span>
                 <span className='in-arr'>{'>'}</span>
               </div>
-              <div className="item3">
+              <div className="item3"onClick={() => {
+                renderHtml('服务规则')
+              }}>
                 <span>服务规则</span>
                 <span className='in-arr'>{'>'}</span>
               </div>

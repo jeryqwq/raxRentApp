@@ -1,5 +1,5 @@
 import { createElement, useState } from 'rax';
-import { Input, Icon } from '@alifd/meet';
+import { Input, Icon, Radio } from '@alifd/meet';
 import styles from './index.module.less';
 import navigate from '@uni/navigate';
 import { myRequest, naviTo } from '@/utils';
@@ -9,9 +9,33 @@ import { showToast } from '@uni/toast';
 function Login() {
   const [name, setName] = useState('')
   const [pwd, setPwd] = useState('')
+  const [userType, setType] = useState(1)
   return (
     <div className={styles.commonwrap}>
-      <div className={styles['title']}>登录融胜达</div>
+      <div className={styles['title']}>登录融胜达工程机械网</div>
+      {/* <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{flex: 1}} className="item-tit">个人登录</span>
+        <span style={{flex: 1}} className="item-tit">法人登录</span>
+      </div> */}
+      <Radio.Group
+          size="large"
+          direction="hoz"
+          style={{margin: '10px'}}
+          value={userType}
+          onChange={(val) => {
+            setType(val)
+          }}
+          dataSource={[
+            {
+              label: '个人登录',
+              value: 1,
+            },
+            {
+              label: '企业登录',
+              value: 2,
+            },
+          ]}
+        />
       <div className="label">手机号</div>
       <div style={{ margin: '0 10px' }}><Input placeholder="用户名" highlightable onChange={setName} /></div>
       <div className="label">登录密码</div>
@@ -44,6 +68,7 @@ function Login() {
               password: pwd,
               username: name,
               openid: openid.data,
+              userType: userType
             }
           })
           setStorage({
