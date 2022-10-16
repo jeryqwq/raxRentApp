@@ -72,7 +72,7 @@ function Menu({ index } : {index: number}) {
       </div>
       <div className="item" onClick={() => {
         navigate.push({
-          url: isWeChatMiniProgram ? '/pages/Category/index' : 'Category',
+          url: isWeChatMiniProgram ? '/pages/Category/index' : '/category',
           isHash: !isWeChatMiniProgram
         })
       }}>
@@ -125,7 +125,7 @@ function Menu({ index } : {index: number}) {
       </div>
       <div className="item" onClick={() => {
          navigate.push({
-          url: isWeChatMiniProgram ? '/pages/Cart/index' : 'Cart',
+          url: isWeChatMiniProgram ? '/pages/Cart/index' : '/cart',
           isHash: !isWeChatMiniProgram
         })
       }}>
@@ -139,7 +139,7 @@ function Menu({ index } : {index: number}) {
         </div>
       <div className="item" onClick={() => {
          navigate.push({
-          url: isWeChatMiniProgram ? '/pages/userCenter/index' : 'userCenter',
+          url: isWeChatMiniProgram ? '/pages/userCenter/index' : '/userCenter',
           isHash: !isWeChatMiniProgram
         })
       }}>

@@ -186,6 +186,10 @@
       "source": "pages/ChangePwd/index"
     },
     {
+      "path": "/renderHtml",
+      "source": "pages/RenderHtml/index"
+    },
+    {
       "path": "/newsList",
       "source": "pages/NewsList/index",
       "window": {

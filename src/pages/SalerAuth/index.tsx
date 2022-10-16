@@ -72,10 +72,10 @@ function Rent() {
             data: {
               ...values, 
               id: uuid,
-              yyzzUrl: yyzzUrlfileList[0].response.img, // items.map(i => i.response.img)
-              cardUrl1: cardUrl1fileList[0].response.img,
-              cardUrl2: cardUrl2fileList[0].response.img,
-              otherUrl: otherfileList.map(i => i.response.img).join(','),
+              yyzzUrl: yyzzUrlfileList[0]?.response?.img, // items.map(i => i.response.img)
+              cardUrl1: cardUrl1fileList[0]?.response?.img,
+              cardUrl2: cardUrl2fileList[0]?.response?.img,
+              otherUrl: otherfileList?.map(i => i?.response?.img).join(','),
               type: 1,
               serverId: userId,
               serverType: 'user',

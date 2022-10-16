@@ -53,7 +53,7 @@ function User() {
     })
     setNums(temp);
   }
-  const {user} = _user as any
+  const {user = {} } = _user as any
   console.log(user.shareCode)
    async function renderHtml (name: string) {
     const res =  await myRequest({
@@ -195,7 +195,8 @@ function User() {
           </div>
 
           <div className="line2">
-              <div className="item3" 
+              {
+                user?.jxcID && <div className="item3" 
                 onClick={() => {
                   if(isWeChatMiniProgram) {
                     wx.navigateToMiniProgram({
@@ -205,6 +206,21 @@ function User() {
                 }}
               >
                 <span>进销存小程序</span>
+                <span className='in-arr'>{'>'}</span>
+              </div>
+              }
+              <div className="item3" onClick={() => {
+                
+                naviTo('/pages/WebView/index?url=' + encodeURIComponent(`https://www.fjrongshengda.com/h5app/#/renderHtml?type=帮助中心`), '/renderHtml?type=帮助中心')
+
+              }}>
+                <span>帮助中心</span>
+                <span className='in-arr'>{'>'}</span>
+              </div>
+              <div className="item3" onClick={() => {
+                naviTo('/pages/NewsList/index?type=flgw', '/newsList?type=flgw')
+              }}>
+                <span>平台法律顾问</span>
                 <span className='in-arr'>{'>'}</span>
               </div>
               <div className="item3" onClick={() => {

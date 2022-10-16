@@ -24,8 +24,8 @@ function IsLogin() {
       onClick={() => {
         naviTo('/pages/Login/index', '/h5Login')
       }}
-      style={{position: 'fixed', top: '0', left: '0', width: '100vw', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', padding: '5px'}}>
-      <span style={{ color: 'white', fontSize: '15px' }}>您暂未登录，点击跳转登录页</span>
+      style={{position: 'fixed', top: '0', left: '0', width: '100vw', background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', padding: '5px'}}>
+      <span style={{ fontSize: '20px', color:'red' }}>您暂未登录，点击跳转登录页</span>
     </div>
   );
 }
