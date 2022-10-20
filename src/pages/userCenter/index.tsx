@@ -39,7 +39,7 @@ function User() {
       }
     })
     const res2 = await myRequest({
-      url: '/businessCenter/pageBusinessNotice',
+      url: 'appnotice/pageMy',
       data: {
         current: 0,
         size: 1
@@ -196,18 +196,16 @@ function User() {
 
           <div className="line2">
               {
-                user?.jxcID && <div className="item3" 
-                onClick={() => {
-                  if(isWeChatMiniProgram) {
-                    wx.navigateToMiniProgram({
-                      appId: 'wx17130096b45c3e73'
-                    })
-                  }
-                }}
-              >
-                <span>进销存小程序</span>
-                <span className='in-arr'>{'>'}</span>
-              </div>
+                 isWeChatMiniProgram && <div className="item3" 
+                 onClick={() => {
+                     wx.navigateToMiniProgram({
+                       appId: 'wx17130096b45c3e73'
+                     })
+                 }}
+               >
+                 <span>进销存小程序</span>
+                 <span className='in-arr'>{'>'}</span>
+               </div>
               }
               <div className="item3" onClick={() => {
                 

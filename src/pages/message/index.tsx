@@ -7,7 +7,7 @@ function Message() {
 
   async function load() {
     const res = await myRequest({
-      url: '/businessCenter/pageBusinessNotice',
+      url: 'appnotice/pageMy',
       data: {
         current,
         size: 8

@@ -1,4 +1,4 @@
-import { CITYS, getBrand, getUuid, myRequest, naviTo } from '@/utils';
+import { CITYS, getBrand, getUuid, loadUser, myRequest, naviTo } from '@/utils';
 import { CascaderSelect, DatePicker, Form, Input, NumberPicker, Select, UploadField } from '@alifd/meet';
 import { FormComponent } from '@alifd/meet/types/form';
 import { showToast } from '@uni/toast';
@@ -30,10 +30,13 @@ function Rent() {
   const [otherfileList, setOthers] = useState<any[]>([])
   const {user: userId} = getSearchParams()
   const ref = useRef<FormComponent>()
-  console.log(userId)
+  const [_user, setUser] = useState({})
+  console.log(userId, _user)
   useEffect(() => {
     setTimeout(() => {
       (async () => {
+        const user = await loadUser()
+        setUser(user)
         const res = await myRequest({ url: '/sysOrgan/findMy', method: 'get', data: { type: 2 } })
          ref.current?.setValue(res)
          if(res) {
@@ -68,10 +71,10 @@ function Rent() {
             data: {
               ...values, 
               id: uuid,
-              yyzzUrl: yyzzUrlfileList[0].response.img, // items.map(i => i.response.img)
-              cardUrl1: cardUrl1fileList[0].response.img,
-              cardUrl2: cardUrl2fileList[0].response.img,
-              otherUrl: otherfileList.map(i => i.response.img).join(','),
+              yyzzUrl: yyzzUrlfileList[0]?.response.img, // items.map(i => i.response.img)
+              cardUrl1: cardUrl1fileList[0]?.response.img,
+              cardUrl2: cardUrl2fileList[0]?.response.img,
+              otherUrl: otherfileList?.map(i => i.response.img).join(','),
               type: 2,
               serverId: userId,
               serverType: 'user',
@@ -85,7 +88,9 @@ function Rent() {
           naviTo('/pages/Index/index', '/')
         }
       }}>
-        <div style={{fontSize: '18px', margin: '10px'}}>
+       {
+        _user?.user?.type === 2 && <>
+           <div style={{fontSize: '18px', margin: '10px'}}>
           企业信息
         </div>
         <Form.Item hasFeedback label="请输入联系人" required >
@@ -122,8 +127,12 @@ function Rent() {
             action="https://www.fjrongshengda.com/lease-center/appfile/upload"
           />
        </Form.Item>
-       <div style={{fontSize: '18px', margin: '10px'}}>
-          法人信息
+        </>
+       }
+       {
+        _user?.user?.type === 1 && <>
+        <div style={{fontSize: '18px', margin: '10px'}}>
+          个人信息
         </div>
         <Form.Item hasFeedback label="法人姓名"  >
           <Input outline={false} name="legalUser" placeholder="请输入法人姓名" />
@@ -207,7 +216,9 @@ function Rent() {
               onError={(item, value) => console.log('error', item)}
             />
         </Form.Item>
-        
+        </>
+       }
+       
         <div style={{textAlign: 'center', margin: '20px auto'}}>
           <Form.Submit block type="primary">
                   提交

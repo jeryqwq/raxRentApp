@@ -62,6 +62,7 @@ function Rent() {
       setUser(res)
     })()
   }, [])
+  console.log(user)
   return (
     <div>
       <Form ref={ref} scrollToFirstError onSubmit={async (values, error) => {
