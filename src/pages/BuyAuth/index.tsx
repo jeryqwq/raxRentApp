@@ -93,10 +93,10 @@ function Rent() {
            <div style={{fontSize: '18px', margin: '10px'}}>
           企业信息
         </div>
-        <Form.Item hasFeedback label="请输入联系人" required >
+        <Form.Item hasFeedback label="请输入联系人"  >
           <Input outline={false} name="callUser" placeholder="请输入联系人" />
         </Form.Item>
-        <Form.Item hasFeedback label="联系电话"  required requiredMessage="手机号码不能为空">
+        <Form.Item hasFeedback label="联系电话"   requiredMessage="手机号码不能为空">
           <Input outline={false}  name="callPhone" placeholder="请输入手机号码" />
         </Form.Item>
         <Form.Item hasFeedback label="企业名称"  >
@@ -220,7 +220,7 @@ function Rent() {
        }
        
         <div style={{textAlign: 'center', margin: '20px auto'}}>
-          <Form.Submit block type="primary">
+          <Form.Submit  type="primary">
                   提交
           </Form.Submit>
         </div>

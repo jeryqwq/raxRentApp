@@ -1,5 +1,5 @@
 import { CITYS, getBrand, getUuid, loadUser, myRequest, naviTo } from '@/utils';
-import { CascaderSelect, DatePicker, Form, Input, NumberPicker, Select, UploadField } from '@alifd/meet';
+import { Button, CascaderSelect, DatePicker, Form, Input, NumberPicker, Select, UploadField } from '@alifd/meet';
 import { FormComponent } from '@alifd/meet/types/form';
 import { showToast } from '@uni/toast';
 import { createElement, useEffect, useLayoutEffect, useRef, useState } from 'rax';
@@ -90,7 +90,9 @@ function Rent() {
           naviTo('/pages/Index/index', '/')
         }
       }}>
-        <div style={{fontSize: '18px', margin: '10px'}}>
+        {
+          user?.user?.type === 2 && <>
+            <div style={{fontSize: '18px', margin: '10px'}}>
           企业信息
         </div>
         <Form.Item hasFeedback label="请输入联系人"  >
@@ -102,7 +104,7 @@ function Rent() {
         <Form.Item hasFeedback label="企业名称"  >
           <Input outline={false} name="name" placeholder="请输入企业名称" />
         </Form.Item>
-        <Form.Item hasFeedback label="统一社会信用代码" required={user.brand}  requiredMessage="统一社会信用代码不能为空">
+        <Form.Item hasFeedback label="统一社会信用代码"   requiredMessage="统一社会信用代码不能为空">
           <Input outline={false}  name="compCode" placeholder="请输入统一社会信用代码" />
         </Form.Item>
        <Form.Item label="企业营业执照" >
@@ -126,13 +128,17 @@ function Rent() {
             action="https://www.fjrongshengda.com/lease-center/appfile/upload"
           />
        </Form.Item>
-       <div style={{fontSize: '18px', margin: '10px'}}>
+          </>
+        }
+       {
+        user?.user?.type === 1 && <>
+        <div style={{fontSize: '18px', margin: '10px'}}>
           个人信息
         </div>
         <Form.Item hasFeedback label="个人姓名"  >
           <Input outline={false} name="legalUser" placeholder="请输入个人姓名" />
         </Form.Item>
-        <Form.Item hasFeedback label="个人身份证号码" required={!user.brand}  requiredMessage="个人身份证号码不能为空">
+        <Form.Item hasFeedback label="个人身份证号码"   requiredMessage="个人身份证号码不能为空">
           <Input outline={false}  name="legalIdCard" placeholder="请输入个人身份证号码" />
         </Form.Item>
         <Form.Item hasFeedback label="身份证正面"  >
@@ -211,10 +217,12 @@ function Rent() {
               onError={(item, value) => console.log('error', item)}
             />
         </Form.Item>
+        </>
+       }
         
         <div style={{textAlign: 'center', margin: '20px auto'}}>
-          <Form.Submit block type="primary">
-                  提交
+          <Form.Submit  type="primary">
+              <Button type="primary">提交</Button>
           </Form.Submit>
         </div>
       </Form>
