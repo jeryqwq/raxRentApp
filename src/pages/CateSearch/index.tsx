@@ -208,7 +208,7 @@ function CategoryCopy() {
         <img style={{width: '230rpx', height: '199rpx'}} src={"https://www.fjrongshengda.com/lease-center/" + i.mainImgPath} alt="" mode="widthFix"/>
         <div className="rg">
           <div className="tit">{i.equipName || i.partsName}</div>
-          <div className="txt">{ i.description || i.equipBrand} <span className='status'>{i.type === 'EquipmentLease' ?  '待租' : '待售'}</span> </div>
+          <div className="txt">{ i.description || i.equipBrand} <span className='status'>{(type === 'RENT' || i.type === 'EquipmentLease') ?  '待租' : '待售'}</span> </div>
           <div className="price">¥{i.price || i.salePrice || i.monthlyRent} { (type === 'RENT' || i.type === 'EquipmentLease') && '/ 月' } <span style={{color: '#333', fontSize: '12px'}}>{i.releaseCityName}</span></div>
           <div className="comp">{i.organName}</div>
         </div>

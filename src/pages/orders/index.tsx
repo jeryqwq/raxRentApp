@@ -1,6 +1,6 @@
-import { createElement, useEffect, useState } from 'rax';
+import { createElement, useEffect, useRef, useState } from 'rax';
 import styles from './index.module.less';
-import { Tab } from '@alifd/meet';
+import { Button, Tab, Modal, Dialog, UploadField, Input, Form, Message } from '@alifd/meet';
 import { myRequest } from '@/utils';
 import ScrollView from 'rax-scrollview';
 import { getSearchParams } from 'rax-app';
@@ -10,6 +10,10 @@ function Orders() {
   const [orders, setOrders] = useState<any[]>([])
   const [status, setStatus] = useState<any>(st)
   const [current, setCurrent] = useState(0)
+  const [fileList, setFileList] = useState([])
+  const [curId, setCurId] = useState('')
+  const [vis, setVis] = useState(false)
+  const ref= useRef<any>()
   async function loadOrder(params, connect = false) {
     const conditions = [{ column: 'order_status', operator: 'eq', value: params.orderStatus}]
     let query = {
@@ -26,6 +30,7 @@ function Orders() {
     res.records && setOrders(connect ? orders.concat(res.records) :res.records )
   }
   useEffect(() => {
+    setCurrent(0)
     loadOrder({orderStatus:status }, false)
   },[status])
   return (
@@ -33,13 +38,9 @@ function Orders() {
       <Tab defaultActiveKey={1} activeKey={status} onChange={(key) => {
         setStatus(Number(key));
       }}>
-        <Tab.Item key={1} title="待确认">
+        <Tab.Item key={1} title="下单待支付">
         </Tab.Item>
-        <Tab.Item key={2} title="待发货">
-        </Tab.Item>
-        <Tab.Item key={3} title="待收货">
-        </Tab.Item>
-        <Tab.Item key={10} title="售后">
+        <Tab.Item key={10} title="结束">
         </Tab.Item>
       </Tab>
       <ScrollView  onEndReached={() => {
@@ -65,14 +66,76 @@ function Orders() {
                   </div>)
                     }
                   <div className="line3">
-                  共{i.details.length}件商品 <span style={{fontSize: '12px'}}>合计</span> ￥{i.paymentMoney}
+                  共{i.details.length}件商品 <span style={{fontSize: '12px', marginRight: 10}}>  合计</span> ￥<span className='price'>{i.paymentMoney}</span>
+                  </div>
+                  <div style={{textAlign: 'right', margin: '5px'}} >
+                    {i.paymentMethod === 3 &&<Button type='primary' size='small' 
+                    onClick={() => {
+                      setCurId(i.id)
+                      setVis(true)
+                    }}
+                    >上传凭证</Button>}
                   </div>
                 </div>
                   ))
                 }
               </div>
       </ScrollView>
-      
+      <Dialog  visible={vis}
+        onOk={async () => {
+          const res = await ref.current.getValue()
+          const {remarks} = res
+          if(fileList.length) {
+            await myRequest( {
+              method: 'post',
+              url: '/mallOrderMaster/offlinePaymentApplication',
+              data: {
+                orderId: curId,
+                remarks: remarks,
+                imgPath: fileList[0]?.response?.img,
+                id: curId,
+              },
+            },
+          );
+          Message.success('上传成功，请等待审核');
+          setStatus(1)
+          setVis(false)
+          }else{
+            Message.error('请上传相关凭证')
+          }
+        }}
+        onCancel={() => {
+          setVis(false)
+        }}
+      >
+      <Form  ref={ref}>
+                        <Form.Item hasFeedback label="请输入描述"  >
+                          <Input name='remarks'/>
+                        </Form.Item>
+                        <Form.Item hasFeedback label="相关凭证"  >
+                          <UploadField
+                            limit={1}
+                            formatter={(response, file) => {
+                              return {
+                                success: response.status === 200,
+                                url: file.imgURL,
+                                img: response.data.data.path,
+                              };
+                            } }
+                            data={{
+                              serviceId: curId,
+                              serviceType: 'PAY_IMG',
+                              sort: 0
+                            }}
+                            value={fileList}
+                            onChange={(items) => {
+                              setFileList(items);
+                            } }
+                            action="https://www.fjrongshengda.com/lease-center/appfile/upload"
+                            />
+                          </Form.Item>
+                        </Form>
+      </Dialog>
     </div>
   );
 }

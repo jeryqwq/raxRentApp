@@ -22,6 +22,8 @@ function OrderAddress() {
     allProdus.push(...j?.details);
     totalPrice += j?.details?.map((i: any) => (i.productAmount) * (i.price || i.nowPrice) ).reduce((a: number,b: number) => a + b)
   })
+  const [paymentMethod, setpaymentMethod] = useState<1 | 2 | 3 | 4 | 5>(3);
+
   useEffect(()=>{
     (async() => {
   
@@ -56,19 +58,23 @@ function OrderAddress() {
               </div>
             </div> : <span 
             onClick={() => {
-              naviTo('/pages/AddressMan/index', '#/addressMan')
+              naviTo('/pages/AddressMan/index', '/addressMan')
             }}
             style={{ fontSize: '20px', color: '#105CCE', textAlign: 'center' }}>请选择收货地址</span>
             }
           </div>
           <div className="pay-method">
+            <div className="tit">支付方式</div>
+
             <Select
-              placeholder={'付款方式'}
+              placeholder={'支付方式'}
+              value={paymentMethod}
               onChange={(v) => {
-                
+                setpaymentMethod(v)
               }}
             >
-              <Select.Option value={1}>先下后付</Select.Option>
+              <Select.Option value={1}>线上支付</Select.Option>
+              <Select.Option value={3}>线下支付</Select.Option>
             </Select>
           </div>
           {
@@ -127,7 +133,8 @@ function OrderAddress() {
                   "address": id,
                   "contactNumber": contactNumber,
                   "productVos": allProdus.map((i: any) => ({ carId:i.id ,isCart: isCart === 1 ? 1 : 0, num: 1, productId: i.productId || i.id, type: i.type })),
-                  "receiveUser": receiveUser
+                  "receiveUser": receiveUser,
+                  paymentMethod,
                 }
               })
                 setDia(true)
@@ -139,12 +146,12 @@ function OrderAddress() {
       <Dialog
         visible={disVis}
         centered
-        title="请确认"
-        content="订单生成成功，是否前往个人中心查看？"
+        title={paymentMethod === 3 ?  "请按照订单金额转账,我们会尽快联系您确认订单" : "提示" }
+        content={paymentMethod === 3 ? '浦发银行账号: (43120078801000000994); 开户行名称: (上海浦东发展银行福建自贸试验区福州片区分行)' : "订单生成成功，是否前往个人中心查看？"}
         type="confirm"
         onClose={() => setDia(false)}
         onOk={() => {
-          naviTo('/pages/Orders/index', '#/orders')
+          naviTo('/pages/orders/index', '/orders')
         }}
         onCancel={() => {
           naviTo('/pages/Index/index', '#/')

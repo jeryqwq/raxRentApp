@@ -1,7 +1,7 @@
 import { createElement, useEffect, useState } from 'rax';
 import View from 'rax-view';
 import { addNativeEventListener, getSearchParams, registerNativeEventListeners, removeNativeEventListener } from 'rax-app';
-import { Slider } from '@alifd/meet';
+import { Dialog, Slider } from '@alifd/meet';
 import styles from './index.module.less';
 import { API_TYPES, getFiles, myRequest, naviTo, setCommonData } from '@/utils';
 import { showToast } from '@uni/toast';
@@ -181,8 +181,15 @@ function Rentdetail() {
             </div>
           </div>
           <div className="rg">
-            <div className="btn" onClick={() => {
-            showToast('电话：' + detail?.organDto?.callPhone)
+            <div className="btn" onClick={async () => {
+              const res = await myRequest({
+                url: '/appdict/param/ptPhone',
+                method: 'get',
+              })
+              Dialog.show({
+                content: res.msg,
+                title: '电话'
+              })
             }}>联系商家</div>
           </div>
         </div>

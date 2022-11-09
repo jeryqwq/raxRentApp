@@ -9,8 +9,6 @@ import { List, Checkbox, Switch } from '@alifd/meet';
 
  const orderStatus = {
   1: '下单待支付',
-   2:'已经支付',
-    3:'已经发货' ,
     10:'结束'
 }
 
@@ -119,27 +117,6 @@ function User() {
                   <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step0.png'}/>
                 </Badge>
                 <div>{orderStatus[1]}</div></div>
-              <div className="item"onClick={() => {
-                navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/orders/index?status=2' : '#/orders?status=2',
-                  refresh: !isWeChatMiniProgram
-                })
-              }}>
-                <Badge count={nums[2]}>
-                  <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step1.png'}/>
-                </Badge>
-                <div>{orderStatus[2]}</div>
-              </div>
-              <div className="item" onClick={() => {
-                navigate.push({
-                  url: isWeChatMiniProgram ? '/pages/orders/index?status=3' : '#/orders?status=3',
-                  refresh: !isWeChatMiniProgram
-                })
-              }}>
-              <Badge count={nums[3]}>
-                  <img style={{width: '35px', height: '35px'}} src={'https://www.fjrongshengda.com/wxapp/step2.png'}/>
-                </Badge>
-                <div>{orderStatus[3]}</div></div>
               <div className="item" onClick={() => {
                 navigate.push({
                   url: isWeChatMiniProgram ? '/pages/orders/index?status=10' : '#/orders?status=10',
