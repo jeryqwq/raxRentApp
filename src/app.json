@@ -20,6 +20,12 @@
         "title": "机手求职"
       }
     },{
+      "path": "/commonList",
+      "source": "pages/CommonList/index",
+      "window": {
+        "title": "查看列表"
+      }
+    },{
       "path": "/createRepair",
       "source": "pages/CreateRepair/index",
       "window": {

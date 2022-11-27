@@ -53,3 +53,61 @@
   flex-wrap: wrap;
   // overflow: scroll;
 }
+
+.count-item{
+  :global{
+    .add-item{
+      display: inline-block;
+      width: 49%;
+      vertical-align: top;
+      .item-item{
+        margin: 5rpx 0;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 13px;
+        color: #666;
+      }
+    }
+    .title{
+      font-size: 16px;
+      display: inline-block;
+      border-bottom: solid 2px #105cce;
+    }
+  }
+}
+.dataItem{
+  font-size: 16rpx;
+  text-align: center;
+  line-height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  margin: 10rpx;
+  :global{
+    .lf {
+      width: 170rpx;
+      background-color: #105cce;
+      height: 60rpx;
+      font-size: 24rpx;
+      color: white;
+      font-weight: bolder;
+    }
+    .rg {
+      flex: 1;
+      border: solid 1rpx #105cce;
+      height: 57rpx;
+      color: #105cce;
+      font-size: 30rpx;
+      font-weight: bolder;
+      display: flex;
+      img{
+        margin: 0 20rpx;
+      }
+      .unit {
+        color: #105cce;
+        font-size: 14rpx;
+        font-weight: normal;
+        margin-left: 10rpx;
+      }
+    }
+  }
+}

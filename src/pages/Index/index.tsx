@@ -13,6 +13,7 @@ import NewsItem from '@/components/NewsItem';
 import { myRequest } from '@/utils';
 import IsLogin from '@/components/isLogin';
 import { isWeChatMiniProgram } from '@uni/env';
+import DataCount from './DataCount';
 const menus = [
   {
     src: 'https://www.fjrongshengda.com/icons/menu1.png',
@@ -150,9 +151,10 @@ function Pages() {
                 <div>{i.title}</div>
               </div> )
               }
-              
         </div>
         
+        <DataCount rents={rents}/>
+
         <Title title='设备租赁' path={isWeChatMiniProgram ? '/pages/CateSearch/index?type=RENT' : '#/cateSearch?type=RENT'}/>
         {/* <TriggerList defaultVal='' onChange={(value) => {
         
