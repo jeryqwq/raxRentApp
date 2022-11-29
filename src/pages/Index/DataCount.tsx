@@ -7,6 +7,8 @@ function DataCount({rents = []}: { rents: any[] }) {
   const [buys, setBuy] = useState<any>({ list: [], total: 0 });
   const [jobs, setJobs] = useState<any>({ list: [], total: 0 });
   const [findJob, setFindjob] = useState<any>({ list: [], total: 0 });
+  const [newRents, setnewRents] = useState<any>({ list: [], total: 0 });
+
   const [counts, setCount] = useState({});
   useEffect(() => {
     (async () => {
@@ -51,6 +53,18 @@ function DataCount({rents = []}: { rents: any[] }) {
             list: res11?.records || [],
             total: res11.total,
           });
+          const res13 = await myRequest( {
+            url: '/equipmentRent/page',
+            data: {
+              page: 0,
+              size: 6,
+            },
+            method: 'post',
+          });
+          setnewRents({
+              list: res13?.records || [],
+              total: res13.total,
+            });
     })()
   }, [])
   return (
@@ -59,21 +73,21 @@ function DataCount({rents = []}: { rents: any[] }) {
      <div className={styles.dataItem}>
         <div className="lf">发布设备</div>
         <div className="rg">
-          <img src="https://www.fjrongshengda.com/images/1068.png" /> {counts.fbsbNum}
+          <img  width={30} height={30} src="https://www.fjrongshengda.com/images/1068.png" /> {counts.fbsbNum}
           <span className="unit">台</span>
         </div>
       </div>
       <div className={styles.dataItem}>
           <div className="lf">发布需求</div>
           <div className="rg">
-            <img src="https://www.fjrongshengda.com/images/1069.png" /> {counts.fbxqNum}
+            <img width={30} height={30} src="https://www.fjrongshengda.com/images/1069.png" /> {counts.fbxqNum}
             <span className="unit">条</span>
           </div>
         </div>
         <div className={styles.dataItem}>
           <div className="lf">服务订单</div>
           <div className="rg">
-            <img src="https://www.fjrongshengda.com/images/1070.png" /> {counts.orderNum}
+            <img  width={30} height={30} src="https://www.fjrongshengda.com/images/1070.png" /> {counts.orderNum}
             <span className="unit">单</span>
           </div>
         </div>
@@ -83,10 +97,10 @@ function DataCount({rents = []}: { rents: any[] }) {
             navigate.push({
               url: isWeChatMiniProgram ? '/pages/CommonList/index?type=rent' : '#/commonList?type=rent'
             })
-          } }>最新求租 </div>
-            {rents.map((i) => (
+          } }>最新求租[{newRents.total}] </div>
+            {newRents?.list?.map((i) => (
               <div className={'item-item'}>
-                {i.equipName}
+                {i.releaseCityName}, {i.equipName}
               </div>
             ))}
         </div>

@@ -176,7 +176,7 @@ function Pages() {
           }
         </div>
 
-        <Title title='二手设备' path={isWeChatMiniProgram ? '/pages/CateSearch/index?type=OLD' : '#/cateSearch?type=OLD'}/>
+        <Title title='设备推荐' path={isWeChatMiniProgram ? '/pages/CateSearch/index?type=OLD' : '#/cateSearch?type=OLD'}/>
         <div className={styles['old-wrap']}>
           {
             sales.slice(0, 3).map(i => <div style={{width: '46%'}}>

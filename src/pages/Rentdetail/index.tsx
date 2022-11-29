@@ -75,15 +75,14 @@ function Rentdetail() {
   return (
     <div className={styles['page']}>
       <div className={styles['wrap']}>
-       <Slider width={690} height={372}  autoplay infinite >
+       <Slider width={750} height={372}  autoplay infinite >
             {imags.map((item) => {
               return (
                 <Slider.Item key={item.path}>
                     <img
                       src={'https://www.fjrongshengda.com/lease-center/' + item.path}
                       style={{
-                        width: 690,
-                        height: 372,
+                        width: '100%',
                       }}
                     />
                 </Slider.Item>
@@ -156,14 +155,13 @@ function Rentdetail() {
         <div style={{fontSize: '12px', color: '#033333'}}>{detail.description}</div>
         {imags.map((item) => {
               return (
-                  <View>
                     <img
                       src={'https://www.fjrongshengda.com/lease-center/' + item.path}
                       style={{
                         width: '100%',
                       }}
+                      mode="widthFix"
                     />
-                  </View>
               );
             })}
       </div>
