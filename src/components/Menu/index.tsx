@@ -115,6 +115,9 @@ function Menu({ index } : {index: number}) {
               <div onClick={() => {
                 checkBuy('/pages/BuyNew/index', 'buyNew')
               }} style={{margin: '15px'}}>求购新机</div>
+              <div onClick={() => {
+                checkBuy('/pages/ForJob/index', 'forJob')
+              }} style={{margin: '15px'}}>招聘机手</div>
             </div>,
             footer: false
           })

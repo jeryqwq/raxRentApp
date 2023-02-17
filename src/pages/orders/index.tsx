@@ -4,6 +4,8 @@ import { Button, Tab, Modal, Dialog, UploadField, Input, Form, Message } from '@
 import { myRequest } from '@/utils';
 import ScrollView from 'rax-scrollview';
 import { getSearchParams } from 'rax-app';
+import { isWeChatMiniProgram } from '@uni/env';
+import { getStorage } from '@uni/storage';
 
 function Orders() {
   const { status: st } = getSearchParams()
@@ -26,7 +28,6 @@ function Orders() {
       url: '/mallOrderMaster/pageMy',
       data: query
     })
-    
     res.records && setOrders(connect ? orders.concat(res.records) :res.records )
   }
   useEffect(() => {
@@ -52,7 +53,9 @@ function Orders() {
                 <div className="item">
                   <div className="line1">
                     <div className="num">订单号：{i.id}</div>
-                    <div className="stat">待确认</div>
+                    <div className="stat"
+                    
+                    >{i.paymentMethod === 1 ?'待支付' : '待确认'}</div>
                   </div>
                  {
                   i.details.map(j =>  <div className="line2">
@@ -68,13 +71,59 @@ function Orders() {
                   <div className="line3">
                   共{i.details.length}件商品 <span style={{fontSize: '12px', marginRight: 10}}>  合计</span> ￥<span className='price'>{i.paymentMoney}</span>
                   </div>
+                 
                   <div style={{textAlign: 'right', margin: '5px'}} >
-                    {i.paymentMethod === 3 &&<Button type='primary' size='small' 
+                    {i.paymentMethod === 3 ? <Button type='primary' size='small' 
                     onClick={() => {
                       setCurId(i.id)
                       setVis(true)
                     }}
-                    >上传凭证</Button>}
+                    >上传凭证</Button> :
+                    i.orderPayStatus !== '00' ? <Button type='primary' size='small' 
+                    onClick={async () => {
+                      if(isWeChatMiniProgram) {
+                        getStorage({
+                          key: 'openid',
+                          async success(res){
+                          if(!res.data) return 
+                            const res2 = await myRequest({
+                              method: 'post',
+                              url: '/pay/orderAppletPay',
+                              data: {
+                                "appId": 'wxd0f39c0fe7d35ddb',
+                                "openId": res.data,
+                                "orderId": i.id,
+                                "tradeType": "MINIPRO"
+                              }
+                            })
+                            console.log(res2, '---')
+                          wx.requestPayment({
+                          timeStamp: res2.timeStamp,
+                          nonceStr: res2.nonceStr,
+                          package: res2.datePackage,
+                          signType: res2.signType,
+                          paySign: res2.paySign,
+                            success(r) {
+                              setTimeout(() => {
+                                loadOrder({orderStatus:status }, false)
+                              }, 3000);
+                          },
+                          fail(e) {
+                              console.error(e)
+                          }
+                          })
+                          }
+                        })
+                      }else{
+                          const res = await myRequest({
+                            method: 'post',
+                              url: '/pay/orderH5Payment/'+i.id,
+                          })
+                          window.location.href = res
+                      }
+                    }}
+                    >支付</Button> : '已支付'
+                    }
                   </div>
                 </div>
                   ))

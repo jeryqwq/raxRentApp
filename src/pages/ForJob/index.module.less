@@ -1,0 +1,36 @@
+
+.wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #F8F8F8;
+  height: 100vh;
+  :global{
+    .item{
+      margin:5px 10px;
+      background-color: white;
+      padding: 10px;
+      .txt{
+        font-size: 13px;
+        color: #333;
+        margin: 10px 0;
+      }
+      .line1{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .lf{
+          display: flex;
+          align-items: center;
+          >img{
+            margin-right: 10px;
+          }
+        }
+        >.rg{
+          font-size: 11px;
+          color: #999999;
+        }
+      }
+    }
+  }
+}

@@ -14,6 +14,12 @@
         "title": "购物车"
       }
     },{
+      "path": "/forJob",
+      "source": "pages/ForJob/index",
+      "window": {
+        "title": "招聘机手"
+      }
+    },{
       "path": "/findjob",
       "source": "pages/Findjob/index",
       "window": {
