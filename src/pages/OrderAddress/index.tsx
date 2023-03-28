@@ -147,7 +147,11 @@ function OrderAddress() {
         visible={disVis}
         centered
         title={paymentMethod === 3 ?  "请按照订单金额转账,我们会尽快联系您确认订单" : "提示" }
-        content={paymentMethod === 3 ? '浦发银行账号: (43120078801000000994); 开户行名称: (上海浦东发展银行福建自贸试验区福州片区分行)' : "订单生成成功，是否前往个人中心查看？"}
+        content={paymentMethod === 3 ? <div style={{textAlign: 'left'}}>
+          <div>福建省融胜达信息科技有限公司</div>
+          <div>建设银行账号: (35050187390000000646);</div> 
+          <div>开户行名称: (中国建设银行股份有限公司福州华能支行)</div>
+        </div> : "订单生成成功，是否前往个人中心查看？"}
         type="confirm"
         onClose={() => setDia(false)}
         onOk={() => {

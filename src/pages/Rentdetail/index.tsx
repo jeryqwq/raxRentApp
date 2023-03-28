@@ -81,6 +81,7 @@ function Rentdetail() {
                 <Slider.Item key={item.path}>
                     <img
                       src={'https://www.fjrongshengda.com/lease-center/' + item.path}
+                      mode="aspectFill"
                       style={{
                         width: '100%',
                       }}

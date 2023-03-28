@@ -77,7 +77,7 @@ export const  loadUser = async function() {
   };
   
 export const naviTo = function (url, h5url) {
-    navigate.push({
+    (isWeChatMiniProgram ? navigate.replace : navigate.push)({
       url: isWeChatMiniProgram ? url : h5url,
       isHash: !isWeChatMiniProgram
     })

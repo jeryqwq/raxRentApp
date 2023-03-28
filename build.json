@@ -1,8 +1,8 @@
 {
   "targets": [
-    "web",
+    // "web",
     // "miniapp",
-    // "wechat-miniprogram"
+    "wechat-miniprogram"
   ],
   "webpack5": true,
   "plugins": [
