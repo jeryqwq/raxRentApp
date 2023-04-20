@@ -1,6 +1,6 @@
 import { createElement, useEffect, useRef, useState } from 'rax';
 import styles from './index.module.less';
-import { Button, Tab, Modal, Dialog, UploadField, Input, Form, Message } from '@alifd/meet';
+import { Button, Tab, Dialog, UploadField, Input, Form, Message } from '@alifd/meet';
 import { myRequest } from '@/utils';
 import ScrollView from 'rax-scrollview';
 import { getSearchParams } from 'rax-app';
@@ -81,7 +81,7 @@ function Orders() {
                     >上传凭证</Button> :
                     i.orderPayStatus !== '00' ? <Button type='primary' size='small' 
                     onClick={async () => {
-                      if(isWeChatMiniProgram) {
+                      if(isWeChatMiniProgram){
                         getStorage({
                           key: 'openid',
                           async success(res){
@@ -117,7 +117,7 @@ function Orders() {
                       }else{
                           const res = await myRequest({
                             method: 'post',
-                              url: '/pay/orderH5Payment/'+i.id,
+                            url: '/pay/orderH5Payment/'+i.id,
                           })
                           window.location.href = res
                       }
@@ -141,12 +141,13 @@ function Orders() {
               data: {
                 orderId: curId,
                 remarks: remarks,
-                imgPath: fileList[0]?.response?.img,
+                imgPath: fileList.map(i => i?.response?.img).join(','),
                 id: curId,
               },
             },
           );
           Message.success('上传成功，请等待审核');
+          setCurrent(0)
           setStatus(1)
           setVis(false)
           }else{
@@ -163,7 +164,7 @@ function Orders() {
                         </Form.Item>
                         <Form.Item hasFeedback label="相关凭证"  >
                           <UploadField
-                            limit={1}
+                            limit={5}
                             formatter={(response, file) => {
                               return {
                                 success: response.status === 200,
